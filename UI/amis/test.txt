@@ -1,0 +1,44 @@
+setupMenu() {
+      document
+        .getElementById("menu-list")
+        .addEventListener("mouseover", function (event) {
+          event.preventDefault();
+          var tit = event.target.getAttribute("menuItemTitle");
+          var contextElement = document.getElementById("context-menu");
+          if(tit != null || tit != ''){
+          contextElement.style.top = event.pageY + "px";
+          contextElement.style.left = event.pageX + "px";
+          contextElement.style.display = "block";
+          
+          document.getElementById("context-menu").innerHTML = tit;
+          }
+          else{
+              contextElement.style.display = "none";
+          }
+        });
+
+        document
+        .getElementById("menu-list")
+        .addEventListener("mouseout", function (event) {
+          event.preventDefault();
+          var contextElement = document.getElementById("context-menu");
+          contextElement.style.display = "none";
+        });
+    },
+
+    #context-menu {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  overflow: hidden;
+  width: max-content;
+    background-color: #505050;
+    color: #fff;
+    text-align: center;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    /* Position the tooltip */
+    white-space: nowrap;
+    line-height: normal;
+}
