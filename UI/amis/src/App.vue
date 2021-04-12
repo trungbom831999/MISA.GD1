@@ -8,10 +8,12 @@
     <Menu />
     <div id="main-content">
       <HeaderEmployee />
-      <div id="content">
+      <div class="router-content">
+        <div class="content-area">
         <TitleEmployee />
         <FilterEmployee />
         <TableEmployee />
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +73,7 @@ export default {
 user agent stylesheet body,
 html {
   font-family: noto_sans, Open Sans local;
+  line-height: 1.5;
 }
 
 Style Attribute {
@@ -101,5 +104,17 @@ Style Attribute {
   height: 100%;
   min-height: calc(100vh - 48px);
   position: relative;
+}
+
+.router-content{
+      padding-top: 48px;
+    padding-left: 20px;
+    background: #f4f5f6;
+}
+
+.content-area{
+  padding-right: 30px;
+    overflow: scroll;
+    height: calc(100vh - 48px);
 }
 </style>

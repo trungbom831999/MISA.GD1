@@ -178,12 +178,24 @@
   margin-right: 8px;
 }
 
+.menu-item:hover:before {
+    content: "";
+    background: #fff;
+    opacity: .2;
+    width: calc(100% + 6px);
+    height: 42px;
+    left: -6px;
+    top: 0;
+    position: absolute;
+}
+
 .mi-24 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
 }
+
 .mi {
   background: url(../assets/img/Sprites.64af8f61.svg) no-repeat;
   cursor: pointer;

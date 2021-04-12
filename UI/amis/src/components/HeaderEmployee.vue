@@ -15,7 +15,9 @@
         <div class="icon-header-current-db"></div>
         <div class="header-current-db-name">NỘI BỘ</div>
       </div>
+
       <div class="spacer"></div>
+
       <div class="flex header-quick-search">
         <div class="ms-input">
           <input
@@ -29,6 +31,75 @@
             for="navbar-search"
           ></label>
         </div>
+      </div>
+
+      <div class="header-menu-icon extend-feature-btn">
+        <button name="button" class="ms-button" title="Tính năng mở rộng">
+          <div class="ms-button-text flex align-center">
+            <a href="" class="flex items-center">
+              <div class="header-icon mi mi-24 mi-category pointer"></div>
+            </a>
+          </div>
+        </button>
+      </div>
+
+      <div class="header-menu-icon">
+        <button name="button" class="ms-button" title="Thiết lập">
+          <div class="ms-button-text flex align-center">
+            <a href="" class="flex items-center">
+              <div class="header-icon mi mi-24 mi-setting__nav"></div>
+            </a>
+          </div>
+        </button>
+      </div>
+
+      <div class="header-menu-icon">
+        <button name="button" class="ms-button" title="Tư vấn sử dụng">
+          <div class="ms-button-text flex align-center">
+            <a href="" class="flex items-center">
+              <div class="header-icon mi mi-24 mi-chat__nav"></div>
+            </a>
+          </div>
+        </button>
+      </div>
+
+      <div class="header-menu-icon">
+        <button name="button" class="ms-button" title="Giúp">
+          <div class="ms-button-text flex align-center">
+            <a href="" class="flex items-center">
+              <div class="header-icon mi mi-24 mi-help__nav"></div>
+            </a>
+          </div>
+        </button>
+      </div>
+
+      <div class="header-menu-icon">
+        <button name="button" class="ms-button" title="Thông báo">
+          <div class="ms-button-text flex align-center">
+            <a href="" class="flex items-center">
+              <div class="header-icon mi mi-24 mi-bell__nav"></div>
+              <div class="notifyno">2</div>
+            </a>
+          </div>
+        </button>
+      </div>
+
+      <div class="account-info flex">
+        <button class="ms-button ms-button-secondary button-account">
+          <div class="ms-button-text flex align-center">
+            <div class="user-avatar">
+              <div
+                data-v-3feb680a=""
+                data-v-3bfca02f=""
+                class="mi mi-32 mi-user-avatar avatar"
+              >
+                <img src="" />
+              </div>
+            </div>
+            <div class="user-name pr-0">Nguyễn Kiên Trung</div>
+            <div class="mi mi-14 mi-chevron-down pointer"></div>
+          </div>
+        </button>
       </div>
     </header>
   </div>
@@ -70,6 +141,18 @@ header {
   cursor: pointer;
 }
 
+.header-branch-name {
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
+  max-width: 800px;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #111;
+}
+
 @media (max-width: 1680px) {
   .header-branch-name {
     max-width: 450px;
@@ -92,17 +175,6 @@ header {
   .header-branch-name {
     max-width: 100px;
   }
-}
-.header-branch-name {
-  padding-left: 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  font-weight: 600;
-  max-width: 800px;
-  text-overflow: ellipsis;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  color: #111;
 }
 
 .header-branch-icon {
@@ -129,10 +201,17 @@ header {
   min-height: 16px;
 }
 
-.mi {
+.mi-32 {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+/* .mi {
   background: url(../assets/img/Sprites.64af8f61.svg) no-repeat;
   cursor: pointer;
-}
+} */
 
 .mi-chevron-right {
   background-position: -80px -360px;
@@ -140,6 +219,54 @@ header {
 
 .mi-search {
   background-position: -992px -360px;
+}
+
+.mi-category {
+  background-position: -568px -30px;
+}
+
+.header-menu-icon:hover .mi-category {
+  background-position: -568px -76px;
+}
+
+.mi-setting__nav {
+  background-position: -675px -30px;
+}
+
+.header-menu-icon:hover .mi-setting__nav {
+  background-position: -144px -88px;
+}
+
+.mi-chat__nav {
+  background-position: -899px -30px;
+}
+
+.header-menu-icon:hover .mi-chat__nav {
+  background-position: -368px -88px;
+}
+
+.mi-help__nav {
+  background-position: -731px -30px;
+}
+
+.header-menu-icon:hover .mi-help__nav {
+  background-position: -200px -88px;
+}
+
+.mi-bell__nav {
+  background-position: -788px -30px;
+}
+
+.header-menu-icon:hover .mi-bell__nav {
+  background-position: -256px -88px;
+}
+
+.mi-chevron-down {
+  background-position: -1076px -32px;
+}
+
+.mi-user-avatar {
+  background-position: -352px -894px;
 }
 
 /**Db hiện tại */
@@ -199,6 +326,7 @@ header {
   justify-content: center;
   color: #111;
   width: 100%;
+  border-radius: 2px;
 }
 
 .ms-input .hasIcon {
@@ -218,7 +346,7 @@ header {
 }
 
 .input-search::-webkit-input-placeholder {
-  color: #babec5;
+  color: #92969c;
   font-style: italic;
   font-weight: 500;
   font-size: 12px;
@@ -237,5 +365,118 @@ header {
   padding-left: 3px;
   margin-right: 4px;
   user-select: none;
+}
+
+/**Các nút chứa icon trên header */
+.header-menu-icon {
+  position: relative;
+  height: 48px;
+  width: 44px;
+}
+
+.header-menu-icon:hover {
+  cursor: pointer;
+  background-color: #000;
+}
+
+.header-menu-icon:hover:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid transparent;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 8px solid #000;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+}
+
+.extend-feature-btn:hover {
+  background-color: #2ca01c;
+}
+
+.extend-feature-btn:hover:after {
+  border-top: 8px solid #2ca01c;
+}
+
+.ms-button {
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: transparent;
+  overflow: visible;
+  height: 100%;
+}
+
+.ms-button .ms-button-text {
+  font-weight: 600;
+  position: relative;
+  color: inherit;
+  display: inline-block;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 13px;
+  /* margin-top: 8px; */
+}
+
+.header-icon {
+  margin: 0 10px;
+}
+
+.notifyno,
+.notifySyncno {
+  background: #ff6e6e;
+  height: 18px;
+  border: none;
+  border-radius: 18px;
+  font-size: 10px;
+  color: #fff;
+  position: absolute;
+  top: -8px;
+  padding: 2px 6px;
+}
+
+.notifyno {
+  right: 4px;
+}
+
+/**Phần thông tin cá nhân trên header */
+.account-info {
+  padding-right: 20px;
+}
+
+.ms-button-secondary {
+  border: unset;
+  color: unset;
+  background: unset;
+}
+
+.button-account {
+  padding: 0 16px !important;
+  height: 36px;
+  position: relative;
+  border-radius: 3px;
+}
+
+.user-avatar {
+  background: #e2e2e2;
+  margin-right: 6px;
+  border-radius: 15px;
+}
+
+.user-avatar .avatar {
+  border-radius: 50%;
+}
+
+.user-name {
+  align-items: center;
+  color: #111;
+  font-size: 15px;
+  display: flex;
+  margin-right: 8px;
 }
 </style>
