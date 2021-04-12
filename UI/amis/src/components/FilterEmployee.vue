@@ -5,7 +5,7 @@
         <div class="content-input-list">
           <div class="ms-input">
             <input
-              id="navbar-search"
+              id="search-employee-input"
               class="input-search hasIcon"
               type="text"
               placeholder="Tìm theo mã, tên nhân viên"
@@ -53,8 +53,8 @@
 }
 
 /**các nút trên Filter */
-.grid-list-data .grid-button-list .ultility-buttons{
-    justify-content: flex-end;
+.grid-list-data .grid-button-list .ultility-buttons {
+  justify-content: flex-end;
 }
 
 .ultility-buttons .list-button {
@@ -73,3 +73,13 @@
   background-position: -423px -201px;
 }
 </style>
+
+<script>
+export default {
+  mounted() {
+    window.onload = function () {
+      document.getElementById("search-employee-input").focus();
+    };
+  },
+};
+</script>

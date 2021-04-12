@@ -69,6 +69,10 @@
     text-align: left!important;
 }
 
+.text-right {
+    text-align: right!important;
+}
+
 .pointer {
     cursor: pointer !important;
 }
@@ -78,12 +82,24 @@
     align-items: center;
 }
 
+.justify-between {
+    justify-content: space-between!important;
+}
+
+.justify-end {
+    justify-content: flex-end!important;
+}
+
 .sticky {
     position: sticky!important;
 }
 
 .left-0 {
     left: 0;
+}
+
+.w-full {
+    width: 100%!important;
 }
 
 .w-6\/7 {
@@ -113,10 +129,14 @@
     background-color: #fff!important;
 }
 
+.input-focus {
+    border: 1px solid #2ca01c !important;
+}
+
 th {
-    padding: 6px 10px;
-    padding-top: 5px;
-    padding-bottom: 3px;
+    padding: 12px 10px;
+    /* padding-top: 5px;
+    padding-bottom: 3px; */
     border: 0;
     text-align: left;
     font-size: .85rem;

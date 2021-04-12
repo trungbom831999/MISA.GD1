@@ -326,7 +326,7 @@ header {
   justify-content: center;
   color: #111;
   width: 100%;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .ms-input .hasIcon {
@@ -353,7 +353,11 @@ header {
 }
 
 .input-search:hover {
-  outline: 1px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
+}
+
+.ms-input .input-search:focus {
+    border: 1px solid #2ca01c !important;
 }
 
 .icon-after {

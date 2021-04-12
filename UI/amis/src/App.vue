@@ -10,9 +10,9 @@
       <HeaderEmployee />
       <div class="router-content">
         <div class="content-area">
-        <TitleEmployee />
-        <FilterEmployee />
-        <TableEmployee />
+          <TitleEmployee />
+          <FilterEmployee />
+          <TableEmployee />
         </div>
       </div>
     </div>
@@ -74,6 +74,9 @@ user agent stylesheet body,
 html {
   font-family: noto_sans, Open Sans local;
   line-height: 1.5;
+  font-size: 13px;
+  width: 100%;
+  letter-spacing: 0.01rem;
 }
 
 Style Attribute {
@@ -106,15 +109,15 @@ Style Attribute {
   position: relative;
 }
 
-.router-content{
-      padding-top: 48px;
-    padding-left: 20px;
-    background: #f4f5f6;
+.router-content {
+  padding-top: 48px;
+  padding-left: 20px;
+  background: #f4f5f6;
 }
 
-.content-area{
+.content-area {
   padding-right: 30px;
-    overflow: scroll;
-    height: calc(100vh - 48px);
+  overflow: scroll;
+  height: calc(100vh - 48px);
 }
 </style>
