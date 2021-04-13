@@ -98,8 +98,16 @@
     left: 0;
 }
 
+
+/*Width*/
+
 .w-full {
     width: 100%!important;
+}
+
+.w-1\/2 {
+    width: calc(100% / 2) !important;
+    ;
 }
 
 .w-6\/7 {
@@ -133,6 +141,10 @@
     border: 1px solid #2ca01c !important;
 }
 
+.input-error {
+    border: 1px solid red !important;
+}
+
 th {
     padding: 12px 10px;
     /* padding-top: 5px;
@@ -140,4 +152,36 @@ th {
     border: 0;
     text-align: left;
     font-size: .85rem;
+}
+
+input:hover {
+    border: 1px solid #e2e2e2;
+}
+
+
+/*margin*/
+
+.mr-6-px {
+    margin-right: 6px !important;
+}
+
+
+/*padding*/
+
+.pd-b-12 {
+    padding-bottom: 12px !important;
+}
+
+.p-r-26 {
+    padding-right: 26px !important;
+}
+
+.p-r-6 {
+    padding-right: 6px !important;
+}
+
+.p-t-5 {
+    padding-top: 5px;
+    padding-bottom: 6px;
+    padding-left: 10px;
 }

@@ -7,15 +7,19 @@
           <button
             class="add-button ms-button ms-button-primary"
             title="Thêm nhân viên"
+            data-toggle="modal"
+            data-target="#addEmployeeDialog"
           >
             <div class="ms-button-text flex align-center">Thêm</div>
           </button>
+
+          
         </div>
       </div>
     </div>
     <div class="back flex justify back-all-di">
       <div class="mi mi-16 mi-chevron-left--primary"></div>
-      <a >Tất cả danh mục</a>
+      <a>Tất cả danh mục</a>
     </div>
   </div>
 </template>
@@ -56,7 +60,7 @@
   border-radius: 30px;
 }
 
-.add-button .ms-button-text{
+.add-button .ms-button-text {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -68,8 +72,8 @@
 }
 
 .ms-button-primary:hover {
-    background-color: #35bf22;
-    color: #fff;
+  background-color: #35bf22;
+  color: #fff;
 }
 
 /**Nút back về tất cả danh mục */
@@ -85,9 +89,10 @@
   cursor: pointer;
 }
 
-.back a{
-    font-size: 14px;
-    font-weight: 300;}
+.back a {
+  font-size: 14px;
+  font-weight: 300;
+}
 
 .mi-chevron-left--primary {
   background-position: -224px -360px;
