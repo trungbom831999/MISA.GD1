@@ -13,7 +13,7 @@
             />
             <label
               class="icon-inputx notranslate ms-input--icon icon-after mi-search mi mi-16"
-              for="navbar-search"
+              for="search-employee-input"
             ></label>
           </div>
         </div>

@@ -130,7 +130,11 @@
               <td class="ms-td-viewer ms-td-wiget text-right">
                 <div class="flex justify-end">
                   <div class="ms-dropdown">
-                    <button class="ms-button edit-btn">
+                    <button
+                      class="ms-button edit-btn"
+                      data-toggle="modal"
+                      data-target="#addEmployeeDialog"
+                    >
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
 
@@ -160,7 +164,8 @@
               <td class="ms-td-viewer ms-td-wiget text-right">
                 <div class="flex justify-end">
                   <div class="ms-dropdown">
-                    <button class="ms-button edit-btn">
+                    <button class="ms-button edit-btn" data-toggle="modal"
+            data-target="#addEmployeeDialog">
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
 
@@ -190,7 +195,8 @@
               <td class="ms-td-viewer ms-td-wiget text-right">
                 <div class="flex justify-end">
                   <div class="ms-dropdown">
-                    <button class="ms-button edit-btn">
+                    <button class="ms-button edit-btn" data-toggle="modal"
+            data-target="#addEmployeeDialog">
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
 
@@ -220,7 +226,8 @@
               <td class="ms-td-viewer ms-td-wiget text-right">
                 <div class="flex justify-end">
                   <div class="ms-dropdown">
-                    <button class="ms-button edit-btn">
+                    <button class="ms-button edit-btn" data-toggle="modal"
+            data-target="#addEmployeeDialog">
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
 
@@ -250,7 +257,8 @@
               <td class="ms-td-viewer ms-td-wiget text-right">
                 <div class="flex justify-end">
                   <div class="ms-dropdown">
-                    <button class="ms-button edit-btn">
+                    <button class="ms-button edit-btn" data-toggle="modal"
+            data-target="#addEmployeeDialog">
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
 
@@ -670,7 +678,7 @@
   position: absolute;
   height: auto;
   width: auto;
-  z-index: 9990;
+  z-index: 1001;
   transform: translate(-100%);
   transition: opacity 0.25s, transform 0.25s, width 0.3s ease;
 }
@@ -717,8 +725,8 @@
 </style>
 
 <script>
-// import JQuery from "jquery";
-// let $ = JQuery;
+import JQuery from "jquery";
+let $ = JQuery;
 
 export default {
   mounted() {
@@ -770,14 +778,22 @@ export default {
   },
   methods: {
     setEventClickToShowMenuForEmployee() {
-      var contextElement = document.getElementById("menu-for-employee");
+      var menuOption = document.getElementById("menu-for-employee");
       var functionBtns = document.getElementsByClassName("function-btn");
       Array.from(functionBtns).forEach(function (element) {
         element.addEventListener("click", function (event) {
-          contextElement.style.top = element.pageY + "px";
-          contextElement.style.left = element.pageX + "px";
-          contextElement.style.display = "block";
-          console.log(event.target.parentElement);
+          if (menuOption.style.display == "none") {
+            var parent = $(event.target).parents(".ms-dropdown");
+            var top = parent.offset().top + 35 + "px";
+            var left = parent.offset().left - 120 + "px";
+            menuOption.style.top = top;
+            menuOption.style.left = left;
+            menuOption.style.display = "block";
+            console.log(parent);
+          } else {
+            menuOption.style.display = "none";
+          }
+          // console.log(event.target.parentElement.pageY + " " + event.pageX);
           // contextElement.classList.add("active");
         });
       });

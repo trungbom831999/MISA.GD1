@@ -1,0 +1,15 @@
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.deps.json
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.dll
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\ref\MISA.Infrastructure.dll
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.pdb
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\MISA.Core.dll
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\bin\Debug\net5.0\MISA.Core.pdb
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csprojAssemblyReference.cache
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.AssemblyInfoInputs.cache
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.AssemblyInfo.cs
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csproj.CoreCompileInputs.cache
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csproj.CopyComplete
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.dll
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\ref\MISA.Infrastructure.dll
+G:\TTMisa\GD1\MISA.GD1\Api\MISA.Amis\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.pdb
