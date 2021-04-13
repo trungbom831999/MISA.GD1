@@ -292,7 +292,11 @@
                       />
                     </div>
                     <div class="combo-actions">
-                      <label class="btn-dropdown m-0" id="show-option-record-in-page" for="number-record-in-page">
+                      <label
+                        class="btn-dropdown m-0"
+                        id="show-option-record-in-page"
+                        for="number-record-in-page"
+                      >
                         <div
                           class="mi mi-16 mi-arrow-dropdown arrow-dropdown--close"
                         ></div>
@@ -318,6 +322,23 @@
           </div>
         </div>
       </div>
+    </div>
+    <div
+      id="menu-for-employee"
+      class="con-ms-dropdown--menu ms-dropdown-menu pt-0"
+      style="display: none"
+    >
+      <ul class="ms-dropdown--menu">
+        <li class="ms-dropdown--item">
+          <a class="ms-dropdown--item-link">Nhân bản</a>
+        </li>
+        <li class="ms-dropdown--item">
+          <a class="ms-dropdown--item-link">Xóa</a>
+        </li>
+        <li class="ms-dropdown--item">
+          <a class="ms-dropdown--item-link">Ngừng sử dụng</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -642,12 +663,67 @@
 /* input:focus{
   border: 1px solid #2ca01c !important;
 } */
+
+/**CSS menu hiện lên trên từng dòng */
+.con-ms-dropdown--menu {
+  padding-top: 10px;
+  position: absolute;
+  height: auto;
+  width: auto;
+  z-index: 9990;
+  transform: translate(-100%);
+  transition: opacity 0.25s, transform 0.25s, width 0.3s ease;
+}
+
+.ms-dropdown--menu {
+  background: #fff;
+  padding: 2px 1px;
+  border-radius: 2px;
+  border: 1px solid #babec5;
+  position: relative;
+}
+
+.ms-dropdown--item {
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1000;
+  text-align: left;
+  width: 100%;
+  list-style: none;
+  min-width: 100px;
+  font-weight: 400 !important;
+  font-size: 13px;
+}
+
+.ms-dropdown--item:hover {
+  background: #e8e9ec;
+  color: #08bf1e;
+}
+
+.ms-dropdown--item .ms-dropdown--item-link {
+  background: inherit !important;
+  color: inherit !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  position: relative;
+  display: block;
+  color: rgba(0, 0, 0, 0.7);
+}
 </style>
 
 <script>
+// import JQuery from "jquery";
+// let $ = JQuery;
+
 export default {
   mounted() {
-//đảo button chọn số bản ghi trên 1 trang
+    this.setEventClickToShowMenuForEmployee();
+    //đảo button chọn số bản ghi trên 1 trang
     var btnShowDropdownRecordInPage = document.getElementById(
       "show-option-record-in-page"
     );
@@ -661,7 +737,9 @@ export default {
           btnShowDropdownRecordInPage.childNodes[i].classList.remove(
             "arrow-dropdown--close"
           );
-          btnShowDropdownRecordInPage.childNodes[i].classList.add("arrow-dropdown--open");
+          btnShowDropdownRecordInPage.childNodes[i].classList.add(
+            "arrow-dropdown--open"
+          );
         } else if (
           btnShowDropdownRecordInPage.childNodes[i].classList.contains(
             "arrow-dropdown--open"
@@ -670,19 +748,44 @@ export default {
           btnShowDropdownRecordInPage.childNodes[i].classList.remove(
             "arrow-dropdown--open"
           );
-          btnShowDropdownRecordInPage.childNodes[i].classList.add("arrow-dropdown--close");
+          btnShowDropdownRecordInPage.childNodes[i].classList.add(
+            "arrow-dropdown--close"
+          );
         }
       }
     };
 
-    var numberRecordInPage = document.getElementById('number-record-in-page');
-    numberRecordInPage.onfocus = function(){
-      numberRecordInPage.closest('.combo-main-content').classList.add('input-focus');
-    }
+    var numberRecordInPage = document.getElementById("number-record-in-page");
+    numberRecordInPage.onfocus = function () {
+      numberRecordInPage
+        .closest(".combo-main-content")
+        .classList.add("input-focus");
+    };
 
-    numberRecordInPage.onblur = function(){
-      numberRecordInPage.closest('.combo-main-content').classList.remove('input-focus');
-    }
+    numberRecordInPage.onblur = function () {
+      numberRecordInPage
+        .closest(".combo-main-content")
+        .classList.remove("input-focus");
+    };
+  },
+  methods: {
+    setEventClickToShowMenuForEmployee() {
+      var contextElement = document.getElementById("menu-for-employee");
+      var functionBtns = document.getElementsByClassName("function-btn");
+      Array.from(functionBtns).forEach(function (element) {
+        element.addEventListener("click", function (event) {
+          contextElement.style.top = element.pageY + "px";
+          contextElement.style.left = element.pageX + "px";
+          contextElement.style.display = "block";
+          console.log(event.target.parentElement);
+          // contextElement.classList.add("active");
+        });
+      });
+    },
+
+    // setEventClickAllFunctionBtn = function(){
+
+    // }
   },
 };
 </script>

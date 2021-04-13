@@ -85,7 +85,7 @@
       </div>
 
       <div class="account-info flex">
-        <button class="ms-button ms-button-secondary button-account">
+        <button class="ms-button button-account">
           <div class="ms-button-text flex align-center">
             <div class="user-avatar">
               <div
@@ -413,6 +413,7 @@ header {
   background: transparent;
   overflow: visible;
   height: 100%;
+  transition: all .2s ease;
 }
 
 .ms-button .ms-button-text {

@@ -60,7 +60,7 @@
             <div class="row pb-b-12">
               <div class="col-md-6 col-12 p-r-26">
                 <div class="row">
-                  <div class="col-sm-5 col-12">
+                  <div class="col-sm-5 col-12 p-r-6">
                     <div class="form-group">
                       <label class="flex label-input" for="employee-code"
                         >Mã
@@ -214,9 +214,9 @@
                   />
                 </div>
               </div>
-              <div class="col-md-6 col-12 p-r-26">
+              <div class="col-md-6 col-12 p-r-26 pl-0">
                 <div class="row">
-                  <div class="col-sm-5 col-12">
+                  <div class="col-sm-5 col-12 p-r-6">
                     <div class="form-group">
                       <label class="flex label-input" for="date-of-birth"
                         >Ngày sinh
@@ -257,7 +257,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-7 col-12">
+                  <div class="col-sm-7 col-12 p-r-6">
                     <div class="form-group">
                       <label class="flex label-input" for="identity-number"
                         >Số CMND
@@ -295,96 +295,109 @@
                 </div>
               </div>
             </div>
+            <div class="form-group p-r-11">
+              <label class="flex label-input" for="employee-adress"
+                >Địa chỉ
+              </label>
+              <input
+                type="text"
+                class="form-control input-is-focus"
+                id="employee-adress"
+              />
+            </div>
+            <div class="row p-r-26">
+              <div class="col-md-3 col-12 p-r-6">
+                <div class="form-group">
+                  <label class="flex label-input" for="phone-number"
+                    >ĐT di động
+                  </label>
+                  <input
+                    type="tel"
+                    class="form-control input-is-focus"
+                    id="phone-number"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3 col-12 pl-0 p-r-6">
+                <div class="form-group">
+                  <label class="flex label-input" for="tele-number"
+                    >ĐT cố định
+                  </label>
+                  <input
+                    type="tel"
+                    class="form-control input-is-focus"
+                    id="tele-number"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3 col-12 pl-0 p-r-6">
+                <div class="form-group">
+                  <label class="flex label-input" for="email">Email </label>
+                  <input
+                    type="email"
+                    class="form-control input-is-focus"
+                    id="email"
+                  />
+                </div>
+              </div>
+            </div>
 
-            <!-- nav tabs -->
-            <div class="w-full mt-2">
-              <div class="navigation-tab">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      data-toggle="tab"
-                      href="#contact-tab"
-                      >Liên hệ</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      data-toggle="tab"
-                      href="#bank-account-tab"
-                      >Tài khoản ngân hàng</a
-                    >
-                  </li>
-                </ul>
+            <div class="form-group p-r-11">
+              <label class="flex label-input" for="employee-account-number"
+                >Tài khoản ngân hàng
+              </label>
+              <input
+                type="text"
+                class="form-control input-is-focus"
+                id="employee-account-number"
+              />
+            </div>
 
-                <div class="tab-content">
-                  <div id="contact-tab" class="container tab-pane active">
-                    <br />
-                    <div class="form-group">
-                      <label class="flex label-input" for="employee-adress"
-                        >Địa chỉ
-                      </label>
-                      <input
-                        type="text"
-                        class="form-control input-is-focus"
-                        id="employee-adress"
-                      />
+            <div class="ms-popup-footer">
+              <div class="divide"></div>
+              <div class="flex footer-button-group">
+                <div class="w-full flex align-right">
+                  <div class="flex align-right">
+                    <div class="p-x-3">
+                      <button
+                        class="ms-button-size-default ms-button-secondary ms-button-radius-false ms-button"
+                      >
+                        <div
+                          class="ms-button-text ms-button--text flex align-center"
+                        >
+                          Cất
+                        </div>
+                      </button>
                     </div>
-                    <div class="row">
-                      <div class="col-md-3 col-12">
-                        <div class="form-group">
-                          <label class="flex label-input" for="phone-number"
-                            >ĐT di động
-                          </label>
-                          <input
-                            type="tel"
-                            class="form-control input-is-focus"
-                            id="phone-number"
-                          />
+                    <div>
+                      <button
+                        class="ms-button-size-default ms-button-primary ms-button-radius-false ms-button"
+                      >
+                        <div
+                          class="ms-button-text ms-button--text flex align-center"
+                        >
+                          Cất và Thêm
                         </div>
-                      </div>
-                      <div class="col-md-3 col-12">
-                        <div class="form-group">
-                          <label class="flex label-input" for="tele-number"
-                            >ĐT cố định
-                          </label>
-                          <input
-                            type="tel"
-                            class="form-control input-is-focus"
-                            id="tele-number"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-3 col-12">
-                          <div class="form-group">
-                          <label class="flex label-input" for="email"
-                            >Email
-                          </label>
-                          <input
-                            type="email"
-                            class="form-control input-is-focus"
-                            id="email"
-                          />
-                        </div>
-                      </div>
+                      </button>
                     </div>
                   </div>
-                  <div id="bank-account-tab" class="container tab-pane fade">
-                    <br />
-                    Tài khoản ngân hàng
-                  </div>
+                </div>
+
+                <div class="w-1/2" style="position: absolute">
+                  <button
+                    class="ms-button-size-default ms-button-secondary ms-button-radius-false ms-button"
+                    data-dismiss="modal"
+                  >
+                    <div
+                      class="ms-button-text ms-button--text flex align-center"
+                    >
+                      Hủy
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
         </div>
       </div>
     </div>
@@ -392,6 +405,22 @@
 </template>
 
 <style>
+/**Dialog */
+.modal-lg,
+.modal-xl {
+  min-width: 900px !important;
+  max-width: 900px !important;
+  width: 900px !important;
+}
+
+@media (max-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
 .input-is-focus:focus {
   border: 1px solid #2ca01c !important;
   box-shadow: none !important;
@@ -758,12 +787,61 @@
   color: #2ca01c !important;
 }
 
-@media (max-width: 992px) {
-  .modal-lg,
-  .modal-xl {
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
+/**Footer Dialog */
+.ms-popup-footer {
+padding-right: 11px;
+}
+
+.divide {
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+  margin: 32px 0 20px 0;
+  position: relative;
+}
+
+.ms-button-size-default {
+  height: 36px;
+  padding: 8px 20px;
+}
+
+.ms-button-secondary {
+  border: 1px solid #8d9096;
+  color: #111;
+  background-color: transparent;
+}
+
+.ms-button-secondary:hover {
+  background-color: #d2d3d6;
+}
+
+.ms-button-secondary:active {
+  background-color: #bbbcbc;
+}
+
+.ms-button-primary {
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: #2ca01c;
+}
+
+.ms-button-primary:focus {
+  background-color: #2ca01c;
+  color: #fff;
+}
+
+.ms-button-primary:hover {
+  background-color: #35bf22;
+  color: #fff;
+}
+
+.ms-button-primary:active {
+  background-color: #248b15;
+  color: #fff;
+}
+
+.ms-button-radius-false,
+.ms-button-radius-false:before {
+  border-radius: 3px;
 }
 </style>
 
@@ -773,7 +851,7 @@ let $ = JQuery;
 
 export default {
   mounted() {
-    $("#addEmployeeDialog").modal("show");
+    // $("#addEmployeeDialog").modal("show");
     $("#addEmployeeDialog").on("shown.bs.modal", function () {
       document.getElementById("employee-code").focus();
     });
