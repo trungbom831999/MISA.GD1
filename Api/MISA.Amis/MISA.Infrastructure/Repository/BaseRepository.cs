@@ -32,8 +32,10 @@ namespace MISA.Infrastructure.Repository
         public IEnumerable<MISAEntity> GetEntities()
         {
             // Thực hiện lấy dữ liệu từ Database:
+            //var offset = 0;
+            //var limmit = 20;
             var storeName = $"Proc_Get{_tableName}";
-            var entities = _dbConnection.Query<MISAEntity>($"Proc_Get{_tableName}", commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<MISAEntity>(storeName, new { offset = 0, limmit = 20 }, commandType: CommandType.StoredProcedure);
             return entities;
         }
 
@@ -51,17 +53,34 @@ namespace MISA.Infrastructure.Repository
 
         public int Insert(MISAEntity entity)
         {
+            //// Thực hiện lấy dữ liệu từ Database:
+            //var storeName = $"Proc_Insert{_tableName}";
+            ////truyền các param của phần tử
+            //var storeParam = entity;
+            //var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
+            //return rowAffects;
             throw new NotImplementedException();
         }
 
         public int Update(MISAEntity entity, Guid entityId)
         {
+            //var storeName = $"Proc_Update{_tableName}";
+            //var storeParam = entity;
+            //var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
+            //return rowAffects;
             throw new NotImplementedException();
         }
 
         public int Delete(Guid entityId)
         {
+            //var storeParam = new
+            //{
+            //    CustomerId = entityId
+            //};
+            //var rowEffects = _dbConnection.Execute($"Proc_Delete{_tableName}By{_tableName}Id", param: storeParam, commandType: CommandType.StoredProcedure);
+            //return rowEffects;
             throw new NotImplementedException();
         }
+
     }
 }

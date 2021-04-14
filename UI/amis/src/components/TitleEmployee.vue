@@ -8,7 +8,7 @@
             class="add-button ms-button ms-button-primary"
             title="Thêm nhân viên"
             data-toggle="modal"
-            data-target="#addEmployeeDialog"
+            data-target="#employee-dialog"
           >
             <div class="ms-button-text flex align-center">Thêm</div>
           </button>

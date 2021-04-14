@@ -199,3 +199,15 @@ input:hover {
     padding-left: .75rem!important;
     padding-right: .75rem!important;
 }
+
+.p-l-16 {
+    padding-left: 16px;
+}
+
+.p-t-12 {
+    padding-top: 12px;
+}
+
+.padding-32 {
+    padding: 32px;
+}

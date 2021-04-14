@@ -16,7 +16,8 @@
         </div>
       </div>
     </div>
-    <AddEmployeeDialog />
+    <EmployeeDialog />
+    <DeleteEmployeeDialog />
   </div>
 </template>
 
@@ -29,7 +30,8 @@ import FilterEmployee from "./components/FilterEmployee.vue";
 import TableEmployee from "./components/TableEmployee.vue";
 
 // import dialog
-import AddEmployeeDialog from "./components/dialog/AddEmployeeDialog.vue";
+import EmployeeDialog from "./components/dialog/EmployeeDialog.vue";
+import DeleteEmployeeDialog from "./components/dialog/DeleteEmployeeDialog.vue";
 
 export default {
   name: "App",
@@ -40,7 +42,8 @@ export default {
     TitleEmployee,
     FilterEmployee,
     TableEmployee,
-    AddEmployeeDialog,
+    EmployeeDialog,
+    DeleteEmployeeDialog
   },
 };
 </script>

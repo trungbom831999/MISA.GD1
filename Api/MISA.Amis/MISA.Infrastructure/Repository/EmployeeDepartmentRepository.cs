@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Infrastructure.Repository
 {
-    public class EmployeeDepartmentRepository : BaseRepository<EmployeeDepartment>, IEmployeeDepartmentRepository
+    public class EmployeeDepartmentRepository : BaseRepository<EmployeeAccountBank>, IEmployeeDepartmentRepository
     {
     }
 }

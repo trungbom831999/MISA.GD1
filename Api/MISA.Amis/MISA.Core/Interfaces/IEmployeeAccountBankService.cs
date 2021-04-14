@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces
 {
-    public interface IEmployeeDepartmentRepository : IBaseRepository<EmployeeAccountBank>
+    public interface IEmployeeAccountBankService : IBaseService<EmployeeAccountBank>
     {
-    }
 
+    }
 }

@@ -133,7 +133,7 @@
                     <button
                       class="ms-button edit-btn"
                       data-toggle="modal"
-                      data-target="#addEmployeeDialog"
+                      data-target="#employee-dialog"
                     >
                       <div class="ms-button-text flex align-center">Sửa</div>
                     </button>
@@ -340,7 +340,7 @@
         <li class="ms-dropdown--item">
           <a class="ms-dropdown--item-link">Nhân bản</a>
         </li>
-        <li class="ms-dropdown--item">
+        <li class="ms-dropdown--item" data-toggle="modal" data-target="#delete-employee-dialog">
           <a class="ms-dropdown--item-link">Xóa</a>
         </li>
         <li class="ms-dropdown--item">
@@ -728,6 +728,8 @@
 import JQuery from "jquery";
 let $ = JQuery;
 
+// var idEmployee;
+
 export default {
   mounted() {
     this.setEventClickToShowMenuForEmployee();
@@ -783,6 +785,7 @@ export default {
       Array.from(functionBtns).forEach(function (element) {
         element.addEventListener("click", function (event) {
           if (menuOption.style.display == "none") {
+            menuOption.style.display = "none";
             var parent = $(event.target).parents(".ms-dropdown");
             var top = parent.offset().top + 35 + "px";
             var left = parent.offset().left - 120 + "px";

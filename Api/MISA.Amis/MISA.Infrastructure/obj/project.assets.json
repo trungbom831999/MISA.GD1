@@ -94,23 +94,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Computer\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\nktrung\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
+      "projectUniqueName": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
       "projectName": "MISA.Infrastructure",
-      "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
-      "outputPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\obj\\",
+      "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\nktrung\\.nuget\\packages\\",
+      "outputPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nktrung\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -124,8 +120,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
-              "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj"
+            "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
+              "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj"
             }
           }
         }
@@ -164,7 +160,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

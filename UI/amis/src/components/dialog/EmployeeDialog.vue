@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="addEmployeeDialog">
+  <div class="modal fade" id="employee-dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <!-- Dialog Header -->
@@ -125,15 +125,13 @@
                           <tr>
                             <th
                               title=""
-                              class="menu-header__th"
-                              style="width: 120px; text-align: left"
+                              class="menu-header__th dropdown-item-th-first-col"
                             >
                               <span>Mã đơn vị</span>
                             </th>
                             <th
                               title=""
-                              class="menu-header__th"
-                              style="width: 280px; text-align: left"
+                              class="menu-header__th dropdown-item-th-second-col"
                             >
                               <span>Tên đơn vị</span>
                             </th>
@@ -147,8 +145,7 @@
                         <tbody class="menu-items">
                           <tr class="dropdown-item">
                             <td
-                              class="dropdown-item-td level-2"
-                              style="width: 120px; text-align: left"
+                              class="dropdown-item-td dropdown-item-td-first-col level-2"
                             >
                               <div class="dropdown-item-td--contents">
                                 <div title="002" class="dropdown-item-td--text">
@@ -157,8 +154,7 @@
                               </div>
                             </td>
                             <td
-                              class="dropdown-item-td"
-                              style="width: 280px; text-align: left"
+                              class="dropdown-item-td dropdown-item-td-second-col"
                             >
                               <div class="dropdown-item-td--contents">
                                 <div
@@ -173,8 +169,7 @@
                           </tr>
                           <tr class="dropdown-item">
                             <td
-                              class="dropdown-item-td level-2"
-                              style="width: 120px; text-align: left"
+                              class="dropdown-item-td dropdown-item-td-first-col level-2"
                             >
                               <div class="dropdown-item-td--contents">
                                 <div title="002" class="dropdown-item-td--text">
@@ -183,8 +178,7 @@
                               </div>
                             </td>
                             <td
-                              class="dropdown-item-td"
-                              style="width: 280px; text-align: left"
+                              class="dropdown-item-td dropdown-item-td-second-col"
                             >
                               <div class="dropdown-item-td--contents">
                                 <div
@@ -295,62 +289,101 @@
                 </div>
               </div>
             </div>
-            <div class="form-group p-r-11">
-              <label class="flex label-input" for="employee-adress"
-                >Địa chỉ
-              </label>
-              <input
-                type="text"
-                class="form-control input-is-focus"
-                id="employee-adress"
-              />
-            </div>
-            <div class="row p-r-26">
-              <div class="col-md-3 col-12 p-r-6">
-                <div class="form-group">
-                  <label class="flex label-input" for="phone-number"
-                    >ĐT di động
-                  </label>
-                  <input
-                    type="tel"
-                    class="form-control input-is-focus"
-                    id="phone-number"
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 col-12 pl-0 p-r-6">
-                <div class="form-group">
-                  <label class="flex label-input" for="tele-number"
-                    >ĐT cố định
-                  </label>
-                  <input
-                    type="tel"
-                    class="form-control input-is-focus"
-                    id="tele-number"
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 col-12 pl-0 p-r-6">
-                <div class="form-group">
-                  <label class="flex label-input" for="email">Email </label>
-                  <input
-                    type="email"
-                    class="form-control input-is-focus"
-                    id="email"
-                  />
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group p-r-11">
-              <label class="flex label-input" for="employee-account-number"
-                >Tài khoản ngân hàng
-              </label>
-              <input
-                type="text"
-                class="form-control input-is-focus"
-                id="employee-account-number"
-              />
+            <!-- nav tabs -->
+            <div class="w-full mt-2">
+              <div class="navigation-tab">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      data-toggle="tab"
+                      href="#contact-tab"
+                      >Liên hệ</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      data-toggle="tab"
+                      href="#bank-account-tab"
+                      >Tài khoản ngân hàng</a
+                    >
+                  </li>
+                </ul>
+
+                <div class="tab-content">
+                  <div id="contact-tab" class="container tab-pane active">
+                    <br />
+
+                    <div class="form-group p-r-11">
+                      <label class="flex label-input" for="employee-adress"
+                        >Địa chỉ
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control input-is-focus"
+                        id="employee-adress"
+                      />
+                    </div>
+                    <div class="row p-r-26">
+                      <div class="col-md-3 col-12 p-r-6">
+                        <div class="form-group">
+                          <label class="flex label-input" for="phone-number"
+                            >ĐT di động
+                          </label>
+                          <input
+                            type="tel"
+                            class="form-control input-is-focus"
+                            id="phone-number"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-12 pl-0 p-r-6">
+                        <div class="form-group">
+                          <label class="flex label-input" for="tele-number"
+                            >ĐT cố định
+                          </label>
+                          <input
+                            type="tel"
+                            class="form-control input-is-focus"
+                            id="tele-number"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-12 pl-0 p-r-6">
+                        <div class="form-group">
+                          <label class="flex label-input" for="email"
+                            >Email
+                          </label>
+                          <input
+                            type="email"
+                            class="form-control input-is-focus"
+                            id="email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group p-r-11">
+                      <label
+                        class="flex label-input"
+                        for="employee-account-number"
+                        >Tài khoản ngân hàng
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control input-is-focus"
+                        id="employee-account-number"
+                      />
+                    </div>
+                  </div>
+                  <div id="bank-account-tab" class="container tab-pane fade">
+                    <br />
+                    <h2>Tài khoản ngân hàng</h2>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="ms-popup-footer">
@@ -395,6 +428,41 @@
                     </div>
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="error-dialog">
+      <div
+        class="modal-dialog modal-dialog-centered"
+        style="width: 444px; min-width: 444px"
+      >
+        <div class="modal-content">
+          <div class="padding-32">
+            <div class="content">
+              <div class="icon-message">
+                <div class="mi mi-48 mi-exclamation-error-48-2"></div>
+              </div>
+              <div class="message-content p-l-16 p-t-12">
+                <span id="idMessageError" class="message"
+                  >Tên không được để trống.</span
+                >
+              </div>
+            </div>
+            <div class="mess-line"></div>
+            <div class="mess-footer">
+              <div class="Center">
+                <button
+                  name="button"
+                  class="ms-component ms-button ms-button-size-default ms-button-primary ms-button-primary-disabled-false ms-button-radius-false ms-button"
+                  @click="hideErrorDialog()"
+                >
+                  <div class="ms-button-text ms-button--text flex align-center">
+                    Đóng
+                  </div>
+                </button>
               </div>
             </div>
           </div>
@@ -645,6 +713,7 @@
   height: 32px;
   line-height: 32px;
   white-space: nowrap;
+  padding: 0 !important;
 }
 
 .dropdown-item:focus,
@@ -655,6 +724,18 @@
 
 .dropdown-item .dropdown-item-td {
   padding: 0 10px;
+}
+
+.dropdown-item-td-first-col,
+.dropdown-item-th-first-col {
+  width: 100px;
+  text-align: left;
+}
+
+.dropdown-item-td-second-col,
+.dropdown-item-th-second-col {
+  width: 250px;
+  text-align: left;
 }
 
 .dropdown-item .dropdown-item-td .dropdown-item-td--contents {
@@ -789,7 +870,7 @@
 
 /**Footer Dialog */
 .ms-popup-footer {
-padding-right: 11px;
+  padding-right: 11px;
 }
 
 .divide {
@@ -843,6 +924,17 @@ padding-right: 11px;
 .ms-button-radius-false:before {
   border-radius: 3px;
 }
+
+/**Dialog cảnh báo */
+.mi-exclamation-error-48-2 {
+  background-position: -24px -954px;
+}
+
+.Center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 </style>
 
 <script>
@@ -851,8 +943,9 @@ let $ = JQuery;
 
 export default {
   mounted() {
-    // $("#addEmployeeDialog").modal("show");
-    $("#addEmployeeDialog").on("shown.bs.modal", function () {
+    // $("#employee-dialog").modal("show");
+    // $("#error-dialog").modal("show");
+    $("#employee-dialog").on("shown.bs.modal", function () {
       document.getElementById("employee-code").focus();
     });
     //checkbox
@@ -915,6 +1008,11 @@ export default {
         comboEmployeeDepartment.style.display = "none";
       }
     };
+  },
+  methods: {
+    hideErrorDialog() {
+      $("#error-dialog").modal("hide");
+    },
   },
 };
 </script>
