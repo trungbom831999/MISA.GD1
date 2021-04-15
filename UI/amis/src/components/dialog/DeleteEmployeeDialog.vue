@@ -13,7 +13,11 @@
             </div>
             <div class="message-content p-l-16 p-t-12">
               <span id="idMessage" class="message"
-                >Bạn có thực sự muốn xóa Nhân viên &lt;NV00002&gt; không?</span
+                >Bạn có thực sự muốn xóa Nhân viên &lt;{{
+                  employee.employeeCode != null
+                    ? employee.employeeCode
+                    : "Chưa có"
+                }}&gt; không?</span
               >
             </div>
           </div>
@@ -23,6 +27,7 @@
               <button
                 name="button"
                 class="ms-component ms-button ms-button-size-default ms-button-primary ms-button-primary-disabled-false ms-button-radius-false ms-button"
+                @click="deleteEmployee()"
               >
                 <div class="ms-button-text ms-button--text flex align-center">
                   Có
@@ -93,3 +98,40 @@
   float: left;
 }
 </style>
+
+<script>
+// import * as axios from "axios";
+import JQuery from "jquery";
+let $ = JQuery;
+
+export default {
+  name: "DeleteEmployee",
+  props: ["employee"],
+  methods: {
+    deleteEmployee() {
+      console.log("ok");
+      $("#delete-employee-dialog").modal("hide");
+      // axios({
+      //   method: "delete",
+      //   url: localHost + this.customer.customerId,
+      // })
+      //   .then(function (response) {
+      //     //thành công
+      //     console.log(response);
+      //     $("#delete-customer-modal").modal("hide");
+      //   })
+      //   .catch(function (response) {
+      //     //gặp lỗi
+      //     console.log(response);
+      //   });
+
+      //load lại data sau khi xóa
+      this.loadData();
+    },
+
+    loadData() {
+      this.$emit("loadData");
+    },
+  },
+};
+</script>

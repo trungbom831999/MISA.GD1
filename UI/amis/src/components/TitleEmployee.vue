@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="title-distance lock-title-distance">
     <div class="header-di">
       <div class="title-di">Nhân viên</div>
@@ -8,7 +9,7 @@
             class="add-button ms-button ms-button-primary"
             title="Thêm nhân viên"
             data-toggle="modal"
-            data-target="#employee-dialog"
+            data-target="#add-employee-dialog"
           >
             <div class="ms-button-text flex align-center">Thêm</div>
           </button>
@@ -22,6 +23,8 @@
       <a>Tất cả danh mục</a>
     </div>
   </div>
+  <!-- <AddEmployeeDialog /> -->
+</div>
 </template>
 
 <style>
@@ -98,3 +101,14 @@
   background-position: -224px -360px;
 }
 </style>
+
+<script>
+// import AddEmployeeDialog from './dialog/AddEmployeeDialog.vue';
+
+export default {
+  name: "Title",
+  components: {
+    // AddEmployeeDialog
+  },
+}
+</script>ript

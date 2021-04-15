@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class EmployeeDepartmentService : BaseService<EmployeeAccountBank>
+    public class DepartmentService : BaseService<Department>
     {
-        public EmployeeDepartmentService(IBaseRepository<EmployeeAccountBank> baseRepository) : base(baseRepository)
+        public DepartmentService(IBaseRepository<Department> baseRepository) : base(baseRepository)
         {
 
         }

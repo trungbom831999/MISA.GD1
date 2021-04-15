@@ -16,20 +16,20 @@ namespace MISA.CukCuk.Api.Controllers
     public abstract class BaseEntityController<MISAEntity> : ControllerBase
     {
         protected string _tableName = string.Empty;
-        protected string _connectionString = "" +
-               "Host=47.241.69.179; " +
-               "Port=3306;" +
-               "User Id= dev; " +
-               "Password=12345678;" +
-               "Database= MF0_NVManh_CukCuk02";
-        protected IDbConnection _dbConnection;
+        //protected string _connectionString = "" +
+        //       "Host=47.241.69.179; " +
+        //       "Port=3306;" +
+        //       "User Id= dev; " +
+        //       "Password=12345678;" +
+        //       "Database= MF0_NVManh_CukCuk02";
+        //protected IDbConnection _dbConnection;
         IBaseService<MISAEntity> _baseService;
 
         public BaseEntityController(IBaseService<MISAEntity> baseService)
         {
             _baseService = baseService;
             _tableName = typeof(MISAEntity).Name;
-            _dbConnection = new MySqlConnection(_connectionString);
+            //_dbConnection = new MySqlConnection(_connectionString);
         }
 
 
@@ -62,12 +62,12 @@ namespace MISA.CukCuk.Api.Controllers
         public IActionResult Get(Guid entityId)
         {
             // Thực hiện lấy dữ liệu từ Database:
-            var customer = _baseService.GetById(entityId);
+            var employee = _baseService.GetById(entityId);
             // Kiểm tra kết quả và trả về cho Client:
-            if (customer == null)
+            if (employee == null)
                 return NoContent();
             else
-                return Ok(customer);
+                return Ok(employee);
         }
 
 

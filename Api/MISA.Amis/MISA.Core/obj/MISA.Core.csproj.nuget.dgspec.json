@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {}
+    "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {}
   },
   "projects": {
-    "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
+    "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj",
+        "projectUniqueName": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj",
         "projectName": "MISA.Core",
-        "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj",
-        "packagesPath": "C:\\Users\\nktrung\\.nuget\\packages\\",
-        "outputPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\obj\\",
+        "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj",
+        "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
+        "outputPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nktrung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

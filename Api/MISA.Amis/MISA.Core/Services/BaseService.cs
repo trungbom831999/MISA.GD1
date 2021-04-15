@@ -22,12 +22,12 @@ namespace MISA.Core.Services
 
         public MISAEntity GetById(Guid entityId)
         {
-            throw new NotImplementedException();
+            return _baseRepository.GetById(entityId);
         }
 
         public int Insert(MISAEntity entity)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Insert(entity);
         }
 
         public int Update(MISAEntity entity, Guid entityId)

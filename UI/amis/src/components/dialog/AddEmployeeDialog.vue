@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="employee-dialog">
+  <div class="modal fade" id="add-employee-dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <!-- Dialog Header -->
@@ -70,6 +70,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-code"
+                        v-model="employee.employeeCode"
                       />
                     </div>
                   </div>
@@ -83,6 +84,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-name"
+                        v-model="employee.employeeName"
                       />
                     </div>
                   </div>
@@ -101,6 +103,7 @@
                         placeholder=""
                         class="combo-input"
                         id="employee-department"
+                        v-model="employee.departmentName"
                       />
                     </div>
 
@@ -143,13 +146,25 @@
                     <div class="menu-body-container scroller">
                       <table class="menu-table">
                         <tbody class="menu-items">
-                          <tr class="dropdown-item">
+                          <tr
+                            class="dropdown-item"
+                            v-for="department in departments"
+                            :key="department.departmentId"
+                            @click="
+                              setDepartmentIdToEmployee(
+                                department.departmentId,
+                                department.departmentName
+                              ),
+                                hideComboEmployeeDepartment()
+                            "
+                            value="1111"
+                          >
                             <td
                               class="dropdown-item-td dropdown-item-td-first-col level-2"
                             >
                               <div class="dropdown-item-td--contents">
                                 <div title="002" class="dropdown-item-td--text">
-                                  002
+                                  007
                                 </div>
                               </div>
                             </td>
@@ -158,34 +173,10 @@
                             >
                               <div class="dropdown-item-td--contents">
                                 <div
-                                  title="PHÒNG KẾ TOÁN"
+                                  :title="department.departmentName"
                                   class="dropdown-item-td--text"
                                 >
-                                  PHÒNG KẾ TOÁN
-                                </div>
-                              </div>
-                            </td>
-                            <td class="selected-container"></td>
-                          </tr>
-                          <tr class="dropdown-item">
-                            <td
-                              class="dropdown-item-td dropdown-item-td-first-col level-2"
-                            >
-                              <div class="dropdown-item-td--contents">
-                                <div title="002" class="dropdown-item-td--text">
-                                  002
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              class="dropdown-item-td dropdown-item-td-second-col"
-                            >
-                              <div class="dropdown-item-td--contents">
-                                <div
-                                  title="PHÒNG KẾ TOÁN"
-                                  class="dropdown-item-td--text"
-                                >
-                                  PHÒNG KẾ TOÁN
+                                  {{ department.departmentName }}
                                 </div>
                               </div>
                             </td>
@@ -205,6 +196,7 @@
                     type="text"
                     class="form-control input-is-focus"
                     id="employee-position"
+                    v-model="employee.employeePosition"
                   />
                 </div>
               </div>
@@ -219,6 +211,10 @@
                         type="date"
                         class="form-control input-is-focus"
                         id="date-of-birth"
+                        :value="
+                          changeDatetimeToDateForInput(employee.dateOfBirth)
+                        "
+                        @change="setDateOfBirth($event)"
                       />
                     </div>
                   </div>
@@ -233,7 +229,7 @@
                             type="radio"
                             id="gender-male"
                             name="radio-group"
-                            checked
+                            :checked="employee.gender == 0"
                           />
                           <label for="gender-male" class="mr-4">Nam</label>
                         </p>
@@ -242,8 +238,18 @@
                             type="radio"
                             id="gender-female"
                             name="radio-group"
+                            :checked="employee.gender == 1"
                           />
                           <label for="gender-female">Nữ</label>
+                        </p>
+                        <p>
+                          <input
+                            type="radio"
+                            id="gender-other"
+                            name="radio-group"
+                            :checked="employee.gender == 2"
+                          />
+                          <label for="gender-other">Khác</label>
                         </p>
                       </div>
                     </div>
@@ -260,18 +266,23 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="identity-number"
+                        v-model="employee.identityNumber"
                       />
                     </div>
                   </div>
                   <div class="col-sm-5 col-12 pl-sm-0">
                     <div class="form-group">
                       <label class="flex label-input" for="identity-date"
-                        >Ngày sinh
+                        >Ngày cấp
                       </label>
                       <input
                         type="date"
                         class="form-control input-is-focus"
                         id="identity-date"
+                        :value="
+                          changeDatetimeToDateForInput(employee.identityDate)
+                        "
+                        @change="setIdentityDate($event)"
                       />
                     </div>
                   </div>
@@ -285,6 +296,7 @@
                     type="text"
                     class="form-control input-is-focus"
                     id="identity-place"
+                    v-model="employee.identityPlace"
                   />
                 </div>
               </div>
@@ -324,6 +336,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-adress"
+                        v-model="employee.address"
                       />
                     </div>
                     <div class="row p-r-26">
@@ -336,6 +349,7 @@
                             type="tel"
                             class="form-control input-is-focus"
                             id="phone-number"
+                            v-model="employee.phoneNumber"
                           />
                         </div>
                       </div>
@@ -348,6 +362,7 @@
                             type="tel"
                             class="form-control input-is-focus"
                             id="tele-number"
+                            v-model="employee.telephoneNumber"
                           />
                         </div>
                       </div>
@@ -360,6 +375,7 @@
                             type="email"
                             class="form-control input-is-focus"
                             id="email"
+                            v-model="employee.email"
                           />
                         </div>
                       </div>
@@ -375,6 +391,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-account-number"
+                        v-model="employee.bankAccountNumber"
                       />
                     </div>
                   </div>
@@ -405,6 +422,7 @@
                     <div>
                       <button
                         class="ms-button-size-default ms-button-primary ms-button-radius-false ms-button"
+                        @click="saveAndAddNewEmployee()"
                       >
                         <div
                           class="ms-button-text ms-button--text flex align-center"
@@ -942,10 +960,28 @@ import JQuery from "jquery";
 let $ = JQuery;
 
 export default {
+  props: ["employee"],
+  data() {
+    return {
+      loading: true,
+      employeeId: "",
+      employees: [],
+      departments: [
+        {
+          departmentId: "11452b0c-768e-5ff7-0d63-eeb1d8ed8cef",
+          departmentName: "Phòng nhân sự",
+        },
+        {
+          departmentId: "142cb08f-7c31-21fa-8e90-67245e8b283e",
+          departmentName: "Phòng Marketing",
+        },
+      ],
+    };
+  },
   mounted() {
-    // $("#employee-dialog").modal("show");
+    // $("#add-employee-dialog").modal("show");
     // $("#error-dialog").modal("show");
-    $("#employee-dialog").on("shown.bs.modal", function () {
+    $("#add-employee-dialog").on("shown.bs.modal", function () {
       document.getElementById("employee-code").focus();
     });
     //checkbox
@@ -1013,6 +1049,106 @@ export default {
     hideErrorDialog() {
       $("#error-dialog").modal("hide");
     },
+
+    hideComboEmployeeDepartment() {
+      $("#combo-employee-department").css("display", "none");
+    },
+
+    setDepartmentIdToEmployee(departmentId, departmentName) {
+      this.employee.departmentId = departmentId;
+      this.employee.departmentName = departmentName;
+    },
+
+    getGenderEmployee(){
+      if($('#gender-male').is(":checked")){
+        this.employee.gender = 0;
+      }
+      else if($('#gender-female').is(":checked")){
+        this.employee.gender = 1;
+      }
+      else{
+        this.employee.gender = 2;
+      }
+    },
+
+    //Đổi định dạng ngày từ Db để hiển thị
+    changeDatetimeToDate(datetime) {
+      if (datetime) {
+        var date = new Date(datetime);
+        var formatOptions = {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        };
+        var dateString = date.toLocaleDateString("en-US", formatOptions);
+
+        return dateString;
+      }
+      return "";
+    },
+
+    //Đổi định dạng ngày cho Input nhận
+    changeDatetimeToDateForInput(datetime) {
+      var date = new Date(datetime);
+
+      var dateString =
+        date.getFullYear() +
+        "-" +
+        ("00" + (date.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("00" + date.getDate()).slice(-2);
+      // console.log(dateString);
+      return dateString;
+    },
+
+    //set ngày sinh cho nhân viên
+    setDateOfBirth(event) {
+      this.employee.dateOfBirth = event.target.value;
+      console.log(this.employee.dateOfBirth);
+    },
+
+    //set ngày cấp CMND cho nhân viên
+    setIdentityDate(event) {
+      this.employee.identityDate = event.target.value;
+      console.log(this.employee.identityDate);
+    },
+
+    //input chỉ có số
+    isNumber: function (evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57)
+        // && charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    //input số điện thoại chỉ có số và dấu +
+    //VD +84xxx
+    isPhoneNumber: function (evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 43
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    saveAndAddNewEmployee(){
+      this.getGenderEmployee();
+      console.log(this.employee);
+      this.employee = [];
+    }
   },
 };
 </script>

@@ -34,15 +34,16 @@ namespace MISA.Infrastructure.Repository
             // Thực hiện lấy dữ liệu từ Database:
             //var offset = 0;
             //var limmit = 20;
-            var storeName = $"Proc_Get{_tableName}";
-            var entities = _dbConnection.Query<MISAEntity>(storeName, new { offset = 0, limmit = 20 }, commandType: CommandType.StoredProcedure);
+            var storeName = $"Proc_Get{_tableName}s";
+            //var entities = _dbConnection.Query<MISAEntity>(storeName, new { offset = 0, limmit = 20 }, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<MISAEntity>(storeName, commandType: CommandType.StoredProcedure);
             return entities;
         }
 
         public MISAEntity GetById(Guid entityId)
         {
             // Thực hiện lấy dữ liệu từ Database:
-            var storeName = $"Proc_Get{_tableName}By{_tableName}Id";
+            var storeName = $"Proc_Get{_tableName}ById";
             DynamicParameters dynamicParameters = new DynamicParameters();
             var storeGetByIdInputParamName = $"@{_tableName}Id";
             dynamicParameters.Add(storeGetByIdInputParamName, entityId);
@@ -53,13 +54,13 @@ namespace MISA.Infrastructure.Repository
 
         public int Insert(MISAEntity entity)
         {
-            //// Thực hiện lấy dữ liệu từ Database:
-            //var storeName = $"Proc_Insert{_tableName}";
-            ////truyền các param của phần tử
-            //var storeParam = entity;
-            //var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
-            //return rowAffects;
-            throw new NotImplementedException();
+            // Thực hiện lấy dữ liệu từ Database:
+            var storeName = $"Proc_Insert{_tableName}";
+            //truyền các param của phần tử
+            var storeParam = entity;
+            var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
+            return rowAffects;
+            //throw new NotImplementedException();
         }
 
         public int Update(MISAEntity entity, Guid entityId)

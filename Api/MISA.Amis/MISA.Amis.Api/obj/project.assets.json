@@ -297,19 +297,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nktrung\\.nuget\\packages\\": {}
+    "C:\\Users\\Computer\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\MISA.Amis.Api.csproj",
+      "projectUniqueName": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\MISA.Amis.Api.csproj",
       "projectName": "MISA.Amis.Api",
-      "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\MISA.Amis.Api.csproj",
-      "packagesPath": "C:\\Users\\nktrung\\.nuget\\packages\\",
-      "outputPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\obj\\",
+      "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\MISA.Amis.Api.csproj",
+      "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
+      "outputPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Amis.Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\nktrung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -323,11 +327,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
-              "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj"
+            "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj": {
+              "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Core\\MISA.Core.csproj"
             },
-            "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {
-              "projectPath": "D:\\TrungNK\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj"
+            "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {
+              "projectPath": "G:\\TTMisa\\GD1\\MISA.GD1\\Api\\MISA.Amis\\MISA.Infrastructure\\MISA.Infrastructure.csproj"
             }
           }
         }
@@ -373,7 +377,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

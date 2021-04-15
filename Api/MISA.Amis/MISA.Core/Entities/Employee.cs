@@ -42,7 +42,7 @@ namespace MISA.Core.Entities
         /// Khóa ngoại (FK)
         /// Id của đơn vị nhân viên
         /// </summary>
-        public int EmployeeDepartmentId { get; set; }
+        public Guid DepartmentId { get; set; }
 
         /// <summary>
         /// Số chứng minh thư nhân dân/ thẻ căn cước công dân
@@ -67,8 +67,27 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Địa chỉ nhân viên
         /// </summary>
-        public string EmployeeAdress { get; set; }
+        public string Address { get; set; }
 
+        /// <summary>
+        /// Số tài khoản ngân hàng
+        /// </summary>
+        public string BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// Tên ngân hàng
+        /// </summary>
+        public string BankName { get; set; }
+
+        /// <summary>
+        /// Chi nhánh ngân hàng
+        /// </summary>
+        public string BankBranchName { get; set; }
+
+        /// <summary>
+        /// Tỉnh của ngân hàng 
+        /// </summary>
+        public string BankProvinceName { get; set; }
         /// <summary>
         /// số điện thoại di động
         /// </summary>
@@ -77,11 +96,16 @@ namespace MISA.Core.Entities
         /// <summary>
         /// số điện thoại cố định
         /// </summary>
-        public string TeleNumber { get; set; }
+        public string TelephoneNumber { get; set; }
 
         /// <summary>
         /// email nhân viên
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Tên đơn vị
+        /// </summary>
+        public string DepartmentName { get; set; }
     }
 }

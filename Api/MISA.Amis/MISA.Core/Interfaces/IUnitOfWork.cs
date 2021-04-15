@@ -9,7 +9,7 @@ namespace MISA.Core.Interfaces
     public interface IUnitOfWork
     {
         IEmployeeRepository Employee { get; }
-        IEmployeeDepartmentRepository EmployeeDepartment { get; }
+        IDepartmentRepository EmployeeDepartment { get; }
         IEmployeeAccountBankRepository EmployeeAccountBank { get; }
     }
 }

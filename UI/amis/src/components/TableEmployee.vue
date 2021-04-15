@@ -2,7 +2,7 @@
   <div class="flex bg-white">
     <div class="grid-model-control">
       <div class="ms-grid-viewer table-scroll table-area" outsize="30px">
-        <table class="ms-table-viewer">
+        <table v-show="!loading" class="ms-table-viewer">
           <thead class="ms-thead-viewer">
             <tr class="ms-tr-viewer">
               <th class="ms-out-left-white-16"></th>
@@ -13,7 +13,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -25,7 +24,6 @@
                     <!-- <div class="mi mi-16" style="display: none"></div> -->
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -37,7 +35,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -49,7 +46,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -61,7 +57,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -73,7 +68,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -85,7 +79,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -97,7 +90,6 @@
                     <div class="mi mi-16" style="display: none"></div>
                   </span>
                   <div
-                    data-v-6ca5f582=""
                     class="mi mi-16 icon-head mi-header-option"
                     style="display: none"
                   ></div>
@@ -115,7 +107,66 @@
           </thead>
 
           <tbody class="dis-contents ms-tbody-viewer">
-            <tr class="ms-tr-viewer">
+            <tr
+              class="ms-tr-viewer"
+              v-for="employee in employees"
+              :key="employee.employeeId"
+              :employeeId="employee.employeeId"
+            >
+              <td class="ms-out-left-white-16"></td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.employeeCode }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.employeeName }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.employeePosition }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.departmentName }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.bankAccountNumber }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.bankName }}
+              </td>
+              <td class="ms-td-viewer text-left">
+                {{ employee.bankBranchName }}
+              </td>
+              <td class="ms-td-viewer text-left">Đang sử dụng</td>
+              <td class="ms-td-viewer ms-td-wiget text-right">
+                <div class="flex justify-end">
+                  <div class="ms-dropdown">
+                    <button
+                      class="ms-button edit-btn"
+                      data-toggle="modal"
+                      data-target="#add-employee-dialog"
+                    >
+                      <div
+                        class="ms-button-text flex align-center"
+                        @click="getEmployeeById(employee.employeeId)"
+                      >
+                        Sửa
+                      </div>
+                    </button>
+
+                    <button
+                      class="ms-button function-btn"
+                      @click="showMenuForEmployee()"
+                    >
+                      <div class="ms-button-text flex align-center">
+                        <div class="mi mi-16 mi-arrow-up--blue">&nbsp;</div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <td class="ms-out-right-white-30"></td>
+              <td class="ms-out-right-grey-30"></td>
+            </tr>
+            <!-- <tr class="ms-tr-viewer">
               <td class="ms-out-left-white-16"></td>
               <td class="ms-td-viewer text-left">NV0001</td>
               <td class="ms-td-viewer text-left">Nguyễn Kiên Trung</td>
@@ -148,133 +199,24 @@
               </td>
               <td class="ms-out-right-white-30"></td>
               <td class="ms-out-right-grey-30"></td>
-            </tr>
-            <tr class="ms-tr-viewer">
-              <td class="ms-out-left-white-16"></td>
-              <td class="ms-td-viewer text-left">NV0001</td>
-              <td class="ms-td-viewer text-left">Nguyễn Kiên Trung</td>
-              <td class="ms-td-viewer text-left">Giám đốc</td>
-              <td class="ms-td-viewer text-left">Ban giám đốc</td>
-              <td class="ms-td-viewer text-left">10847232699636</td>
-              <td class="ms-td-viewer text-left">
-                Ngân hàng Nông nghiệp và Phát triển nông thôn Việt Nam
-              </td>
-              <td class="ms-td-viewer text-left">Chi nhánh Hai Bà Trưng</td>
-              <td class="ms-td-viewer text-left">Đang sử dụng</td>
-              <td class="ms-td-viewer ms-td-wiget text-right">
-                <div class="flex justify-end">
-                  <div class="ms-dropdown">
-                    <button class="ms-button edit-btn" data-toggle="modal"
-            data-target="#addEmployeeDialog">
-                      <div class="ms-button-text flex align-center">Sửa</div>
-                    </button>
-
-                    <button class="ms-button function-btn">
-                      <div class="ms-button-text flex align-center">
-                        <div class="mi mi-16 mi-arrow-up--blue">&nbsp;</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </td>
-              <td class="ms-out-right-white-30"></td>
-              <td class="ms-out-right-grey-30"></td>
-            </tr>
-            <tr class="ms-tr-viewer">
-              <td class="ms-out-left-white-16"></td>
-              <td class="ms-td-viewer text-left">NV0001</td>
-              <td class="ms-td-viewer text-left">Nguyễn Kiên Trung</td>
-              <td class="ms-td-viewer text-left">Giám đốc</td>
-              <td class="ms-td-viewer text-left">Ban giám đốc</td>
-              <td class="ms-td-viewer text-left">10847232699636</td>
-              <td class="ms-td-viewer text-left">
-                Ngân hàng Nông nghiệp và Phát triển nông thôn Việt Nam
-              </td>
-              <td class="ms-td-viewer text-left">Chi nhánh Hai Bà Trưng</td>
-              <td class="ms-td-viewer text-left">Đang sử dụng</td>
-              <td class="ms-td-viewer ms-td-wiget text-right">
-                <div class="flex justify-end">
-                  <div class="ms-dropdown">
-                    <button class="ms-button edit-btn" data-toggle="modal"
-            data-target="#addEmployeeDialog">
-                      <div class="ms-button-text flex align-center">Sửa</div>
-                    </button>
-
-                    <button class="ms-button function-btn">
-                      <div class="ms-button-text flex align-center">
-                        <div class="mi mi-16 mi-arrow-up--blue">&nbsp;</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </td>
-              <td class="ms-out-right-white-30"></td>
-              <td class="ms-out-right-grey-30"></td>
-            </tr>
-            <tr class="ms-tr-viewer">
-              <td class="ms-out-left-white-16"></td>
-              <td class="ms-td-viewer text-left">NV0001</td>
-              <td class="ms-td-viewer text-left">Nguyễn Kiên Trung</td>
-              <td class="ms-td-viewer text-left">Giám đốc</td>
-              <td class="ms-td-viewer text-left">Ban giám đốc</td>
-              <td class="ms-td-viewer text-left">10847232699636</td>
-              <td class="ms-td-viewer text-left">
-                Ngân hàng Nông nghiệp và Phát triển nông thôn Việt Nam
-              </td>
-              <td class="ms-td-viewer text-left">Chi nhánh Hai Bà Trưng</td>
-              <td class="ms-td-viewer text-left">Đang sử dụng</td>
-              <td class="ms-td-viewer ms-td-wiget text-right">
-                <div class="flex justify-end">
-                  <div class="ms-dropdown">
-                    <button class="ms-button edit-btn" data-toggle="modal"
-            data-target="#addEmployeeDialog">
-                      <div class="ms-button-text flex align-center">Sửa</div>
-                    </button>
-
-                    <button class="ms-button function-btn">
-                      <div class="ms-button-text flex align-center">
-                        <div class="mi mi-16 mi-arrow-up--blue">&nbsp;</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </td>
-              <td class="ms-out-right-white-30"></td>
-              <td class="ms-out-right-grey-30"></td>
-            </tr>
-            <tr class="ms-tr-viewer">
-              <td class="ms-out-left-white-16"></td>
-              <td class="ms-td-viewer text-left">NV0001</td>
-              <td class="ms-td-viewer text-left">Nguyễn Kiên Trung</td>
-              <td class="ms-td-viewer text-left">Giám đốc</td>
-              <td class="ms-td-viewer text-left">Ban giám đốc</td>
-              <td class="ms-td-viewer text-left">10847232699636</td>
-              <td class="ms-td-viewer text-left">
-                Ngân hàng Nông nghiệp và Phát triển nông thôn Việt Nam
-              </td>
-              <td class="ms-td-viewer text-left">Chi nhánh Hai Bà Trưng</td>
-              <td class="ms-td-viewer text-left">Đang sử dụng</td>
-              <td class="ms-td-viewer ms-td-wiget text-right">
-                <div class="flex justify-end">
-                  <div class="ms-dropdown">
-                    <button class="ms-button edit-btn" data-toggle="modal"
-            data-target="#addEmployeeDialog">
-                      <div class="ms-button-text flex align-center">Sửa</div>
-                    </button>
-
-                    <button class="ms-button function-btn">
-                      <div class="ms-button-text flex align-center">
-                        <div class="mi mi-16 mi-arrow-up--blue">&nbsp;</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </td>
-              <td class="ms-out-right-white-30"></td>
-              <td class="ms-out-right-grey-30"></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
+        <div
+          v-show="loading"
+          id="spinner-load-data"
+          style="display: none !important"
+        >
+          <div class="d-flex justify-content-center">
+            <div
+              class="spinner-border"
+              role="status"
+              style="color: #019160 !important"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
         <div class="ms-panigation">
           <div class="flex items-center justify-between w-full pagination-bar">
             <div class="left-pagination">
@@ -340,7 +282,12 @@
         <li class="ms-dropdown--item">
           <a class="ms-dropdown--item-link">Nhân bản</a>
         </li>
-        <li class="ms-dropdown--item" data-toggle="modal" data-target="#delete-employee-dialog">
+        <li
+          class="ms-dropdown--item"
+          data-toggle="modal"
+          data-target="#delete-employee-dialog"
+          @click="getEmployee(), hideMenu()"
+        >
           <a class="ms-dropdown--item-link">Xóa</a>
         </li>
         <li class="ms-dropdown--item">
@@ -348,6 +295,9 @@
         </li>
       </ul>
     </div>
+    <!-- <EditEmployeeDialog /> -->
+    <AddEmployeeDialog :employee="employee"/>
+    <DeleteEmployeeDialog :employee="employee" />
   </div>
 </template>
 
@@ -725,14 +675,33 @@
 </style>
 
 <script>
+import * as axios from "axios";
 import JQuery from "jquery";
 let $ = JQuery;
 
-// var idEmployee;
+// import EditEmployeeDialog from './dialog/EditEmployeeDialog.vue';
+import AddEmployeeDialog from './dialog/AddEmployeeDialog.vue';
+import DeleteEmployeeDialog from "./dialog/DeleteEmployeeDialog.vue";
+
+var idEmployee = "";
+var localhost = "https://localhost:44397/api/v1/Employees/";
 
 export default {
+  name: "TableEmployees",
+  components: {
+    // EditEmployeeDialog,
+    AddEmployeeDialog,
+    DeleteEmployeeDialog,
+  },
+  data() {
+    return {
+      loading: true,
+      employeeId: "",
+      employee: {},
+      employees: [],
+    };
+  },
   mounted() {
-    this.setEventClickToShowMenuForEmployee();
     //đảo button chọn số bản ghi trên 1 trang
     var btnShowDropdownRecordInPage = document.getElementById(
       "show-option-record-in-page"
@@ -779,32 +748,74 @@ export default {
     };
   },
   methods: {
-    setEventClickToShowMenuForEmployee() {
+    // setEventClickToShowMenuForEmployee() {
+    //   console.log("run");
+    //   var menuOption = document.getElementById("menu-for-employee");
+    //   var functionBtns = document.getElementsByClassName("function-btn");
+    //   Array.from(functionBtns).forEach(function (element) {
+    //     element.addEventListener("click", function (event) {
+    //       if (menuOption.style.display == "none") {
+    //         var parent = $(event.target).parents(".ms-dropdown");
+    //         var top = parent.offset().top + 35 + "px";
+    //         var left = parent.offset().left - 120 + "px";
+    //         menuOption.style.top = top;
+    //         menuOption.style.left = left;
+    //         menuOption.style.display = "block";
+    //         console.log(parent);
+    //       } else {
+    //         menuOption.style.display = "none";
+    //       }
+    //       // console.log(event.target.parentElement.pageY + " " + event.pageX);
+    //       // contextElement.classList.add("active");
+    //     });
+    //   });
+    // },
+
+    showMenuForEmployee() {
       var menuOption = document.getElementById("menu-for-employee");
-      var functionBtns = document.getElementsByClassName("function-btn");
-      Array.from(functionBtns).forEach(function (element) {
-        element.addEventListener("click", function (event) {
-          if (menuOption.style.display == "none") {
-            menuOption.style.display = "none";
-            var parent = $(event.target).parents(".ms-dropdown");
-            var top = parent.offset().top + 35 + "px";
-            var left = parent.offset().left - 120 + "px";
-            menuOption.style.top = top;
-            menuOption.style.left = left;
-            menuOption.style.display = "block";
-            console.log(parent);
-          } else {
-            menuOption.style.display = "none";
-          }
-          // console.log(event.target.parentElement.pageY + " " + event.pageX);
-          // contextElement.classList.add("active");
-        });
-      });
+      var parent = $(event.target).parents(".ms-dropdown");
+      var parentContainId = parent.parents("tr");
+      // idEmployee = parentContainId.attr("employeeid");
+      if (idEmployee != parentContainId.attr("employeeid")) {
+        idEmployee = parentContainId.attr("employeeid");
+        var top = parent.offset().top + 35 + "px";
+        var left = parent.offset().left - 120 + "px";
+        menuOption.style.top = top;
+        menuOption.style.left = left;
+        menuOption.style.display = "block";
+        console.log(parent);
+      } else {
+        menuOption.style.display = "none";
+      }
     },
 
-    // setEventClickAllFunctionBtn = function(){
+     hideMenu(){
+       document.getElementById("menu-for-employee").style.display = "none";
+     },
 
-    // }
+    async getEmployee() {
+      const response = await axios.get(localhost + idEmployee);
+      this.employee = response.data;
+      console.log(this.employee);
+    },
+
+    async getEmployeeById(id) {
+      const response = await axios.get(localhost + id);
+      this.employee = response.data;
+      console.log(this.employee);
+    },
+
+    async loadData() {
+      this.loading = true;
+      const response = await axios.get(localhost);
+
+      console.log(response.data[0]);
+      this.loading = false;
+      this.employees = response.data;
+    },
+  },
+  async created() {
+    this.loadData();
   },
 };
 </script>

@@ -10,17 +10,17 @@ namespace MISA.Core.Entities
     /// Đơn vị nhân viên
     /// CreatedBy: NKTrung (13/04/2021)
     /// </summary>
-    public class EmployeeDepartment : BaseEntity
+    public class Department : BaseEntity
     {
         /// <summary>
         /// Khóa chính
         /// </summary>
-        public int EmployeeDepartmentId { get; set; }
+        public int DepartmentId { get; set; }
 
         /// <summary>
         /// tên đơn vị
         /// </summary>
-        public string EmployeeDepartmentName { get; set; }
+        public string DepartmentName { get; set; }
 
         /// <summary>
         /// mô tả bộ phận
