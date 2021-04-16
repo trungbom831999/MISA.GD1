@@ -72,7 +72,7 @@ namespace MISA.Amis.Api.Controllers
         ///  - HttpCode: 500 nếu có lỗi hoặc Exception xảy ra trên Server
         /// </returns>
         /// CreatedBy: NKTrung (13/04/2021)
-        [HttpPut("{entityId}")]
+        [HttpPut("{employeeId}")]
         public IActionResult Put(Employee employee, Guid employeeId)
         {
             // Check Mã nhân viên trùng:
@@ -101,6 +101,30 @@ namespace MISA.Amis.Api.Controllers
                 return NoContent();
             else
                 return Ok(employee);
+        }
+
+        /// <summary>
+        /// Xóa khách hàng
+        /// </summary>
+        /// <param name="employeeId">Khóa chính bảng thông tin nhân viên</param>
+        /// <returns>
+        ///  - HttpCode: 200 nếu xóa thành công
+        ///  - Lỗi dữ liệu không hợp lệ : 400 (BadRequest)
+        ///  - HttpCode: 500 nếu có lỗi hoặc Exceotion xảy ra trên Server
+        /// </returns>
+        /// CreatedBy: NKTrung (16/04/2021)
+        [HttpDelete("{employeeId}")]
+        public IActionResult Delete(Guid employeeId)
+        {
+            // Thực hiện xóa dữ liệu từ Database:
+            var rowEffects = _employeeService.Delete(employeeId);
+            // Kiểm tra kết quả và trả về cho Client:
+            if (rowEffects == 0)
+            {
+                return NoContent();
+            }
+            else
+                return Ok(rowEffects);
         }
 
         /// <summary>

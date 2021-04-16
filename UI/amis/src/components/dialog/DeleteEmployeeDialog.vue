@@ -100,30 +100,30 @@
 </style>
 
 <script>
-// import * as axios from "axios";
+import * as axios from "axios";
 import JQuery from "jquery";
 let $ = JQuery;
+
+var localhost = "https://localhost:44397/api/v1/Employees/";
 
 export default {
   name: "DeleteEmployee",
   props: ["employee"],
   methods: {
     deleteEmployee() {
-      console.log("ok");
-      $("#delete-employee-dialog").modal("hide");
-      // axios({
-      //   method: "delete",
-      //   url: localHost + this.customer.customerId,
-      // })
-      //   .then(function (response) {
-      //     //thành công
-      //     console.log(response);
-      //     $("#delete-customer-modal").modal("hide");
-      //   })
-      //   .catch(function (response) {
-      //     //gặp lỗi
-      //     console.log(response);
-      //   });
+      axios({
+        method: "delete",
+        url: localhost + this.employee.employeeId,
+      })
+        .then(function (response) {
+          //thành công
+          console.log(response);
+          $("#delete-employee-dialog").modal("hide");
+        })
+        .catch(function (response) {
+          //gặp lỗi
+          console.log(response);
+        });
 
       //load lại data sau khi xóa
       this.loadData();

@@ -297,8 +297,8 @@
       </ul>
     </div>
     <!-- <EditEmployeeDialog /> -->
-    <AddEmployeeDialog :employee="employee" :isEdit="true"/>
-    <DeleteEmployeeDialog :employee="employee" />
+    <AddEmployeeDialog @loadData="loadData" :employee="employee" :isEdit="true"/>
+    <DeleteEmployeeDialog @loadData="loadData" :employee="employee" />
   </div>
 </template>
 
@@ -777,7 +777,7 @@ export default {
       var parent = $(event.target).parents(".ms-dropdown");
       var parentContainId = parent.parents("tr");
       // idEmployee = parentContainId.attr("employeeid");
-      if (idEmployee != parentContainId.attr("employeeid")) {
+      if (idEmployee != parentContainId.attr("employeeid") || menuOption.style.display == "none") {
         idEmployee = parentContainId.attr("employeeid");
         var top = parent.offset().top + 35 + "px";
         var left = parent.offset().left - 120 + "px";

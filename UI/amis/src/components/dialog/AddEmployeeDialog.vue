@@ -77,6 +77,7 @@
                         class="form-control input-is-focus"
                         id="employee-code"
                         v-model="employee.employeeCode"
+                        @input="textchangeInputEmployeeCode()"
                       />
                     </div>
                   </div>
@@ -91,6 +92,7 @@
                         class="form-control input-is-focus"
                         id="employee-name"
                         v-model="employee.employeeName"
+                        @input="textchangeInputEmployeeName()"
                       />
                     </div>
                   </div>
@@ -109,7 +111,9 @@
                         placeholder=""
                         class="combo-input"
                         id="employee-department"
+                        readonly
                         v-model="employee.departmentName"
+                        @change="textchangeInputDepartment()"
                       />
                     </div>
 
@@ -385,6 +389,7 @@
                             class="form-control input-is-focus"
                             id="email"
                             v-model="employee.email"
+                            @input="textchangeInputEmployeeEmail()"
                           />
                         </div>
                       </div>
@@ -421,6 +426,7 @@
                     <div class="p-x-3">
                       <button
                         class="ms-button-size-default ms-button-secondary ms-button-radius-false ms-button"
+                        @click="saveEmployee()"
                       >
                         <div
                           class="ms-button-text ms-button--text flex align-center"
@@ -1090,29 +1096,39 @@
 </style>
 
 <script>
+import * as axios from "axios";
 import JQuery from "jquery";
 let $ = JQuery;
 import EventBus from "../../main.js";
 
+var localhost = "https://localhost:44397/api/v1/Employees/";
+var localhostDepartment = "https://localhost:44397/api/v1/Departments";
+
 export default {
-  props: ["employee", "isEdit"],
+  props: {
+    employee: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    isEdit: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
+  },
   data() {
     return {
+      // isEdit: this.isEditPass,
+      // employee: JSON.parse(this.employeePass),
       loading: true,
       isValidate: false,
       inputId: "",
       employeeId: "",
       employees: [],
-      departments: [
-        {
-          departmentId: "11452b0c-768e-5ff7-0d63-eeb1d8ed8cef",
-          departmentName: "Phòng nhân sự",
-        },
-        {
-          departmentId: "142cb08f-7c31-21fa-8e90-67245e8b283e",
-          departmentName: "Phòng Marketing",
-        },
-      ],
+      departments: [],
     };
   },
   mounted() {
@@ -1199,6 +1215,10 @@ export default {
     };
   },
   methods: {
+    showIsValidate() {
+      console.log(this.isValidate);
+    },
+
     hideErrorDialog() {
       // $("#error-dialog").modal("hide");
       $("#error-dialog").css("display", "none");
@@ -1227,7 +1247,12 @@ export default {
       // console.log(departmentId +" "+ departmentName);
       this.employee.departmentId = departmentId;
       this.employee.departmentName = departmentName;
-      console.log(this.employee.departmentId +" "+ this.employee.departmentName);
+      console.log(
+        this.employee.departmentId + " " + this.employee.departmentName
+      );
+      $("#employee-department")
+        .parents(".combo-main-con")
+        .removeClass("input-error");
     },
 
     getGenderEmployee() {
@@ -1317,85 +1342,63 @@ export default {
     validateEmployeeCode(employeeCode) {
       // employeeCode = employeeCode.trim();
       if (employeeCode == null || employeeCode == "") {
-        $("#employee-code").addClass("input-error");
         return false;
-      } else {
-        if (this.isValidate == true) {
-          $("#employee-code").removeClass("input-error");
-        }
       }
 
       return true;
     },
 
+    textchangeInputEmployeeCode() {
+      if (this.validateEmployeeCode(this.employee.employeeCode)) {
+        $("#employee-code").removeClass("input-error");
+      } else {
+        if (this.isValidate == true) {
+          $("#employee-code").addClass("input-error");
+        }
+      }
+    },
+
     //validate họ và tên
-    validateFullName(employeeFullName) {
+    validateEmployeeName(employeeName) {
       // employeeFullName = employeeFullName.trim();
-      if (employeeFullName == null || employeeFullName == "") {
-        $("#employee-name").addClass("input-error");
+      if (employeeName == null || employeeName == "") {
         return false;
       }
 
       return true;
+    },
+
+    textchangeInputEmployeeName() {
+      if (this.validateEmployeeCode(this.employee.employeeName)) {
+        $("#employee-name").removeClass("input-error");
+      } else {
+        if (this.isValidate == true)
+          $("#employee-name").addClass("input-error");
+      }
     },
 
     //validate đơn vị công tác của nhân viên
     validateDepartment(employeeDepartment) {
       // employeeDepartment = employeeDepartment.trim();
       if (employeeDepartment == null || employeeDepartment == "") {
-          $("#employee-department").parents('.combo-main-con').addClass("input-error");
-        
+        // $("#employee-department").parents('.combo-main-con').addClass("input-error");
+
         return false;
-      } else {
-        if (this.isValidate == true) {
-          $("#employee-department").parents('.combo-main-con').removeClass("input-error");
-        }
       }
       return true;
     },
 
-    //Validate số điện thoại 10 số
-    validatePhoneNumber(employeePhone) {
-      // employeePhone = employeePhone.trim();
-      // if (employeePhone == null || employeePhone == "") {
-      //   this.showErrorDialog("Số điện thoại không được trống");
-      //   return false;
-      // }
-      // var phone = employeePhone.trim();
-      var phone = employeePhone;
-      phone = phone.replace("(+84)", "0");
-      phone = phone.replace("+84", "0");
-      phone = phone.replace("0084", "0");
-      phone = phone.replace(/ /g, "");
-      if (phone != "") {
-        var firstNumber = phone.substring(0, 2);
-        if (
-          (firstNumber == "09" || firstNumber == "08") &&
-          phone.length == 10
-        ) {
-          if (phone.match(/^\d{10}/)) {
-            if(this.isValidate == true){
-              $('#phone-number').removeClass('input-error');
-            }
-            return true;
-          }
-        } else if (firstNumber == "01" && phone.length == 11) {
-          if (phone.match(/^\d{11}/)) {
-            if(this.isValidate == true){
-              $('#phone-number').removeClass('input-error');
-            }
-            return true;
-          }
-        }
+    textchangeInputDepartment() {
+      if (this.validateEmployeeCode(this.employee.employeeDepartment)) {
+        $("#employee-department")
+          .parents(".combo-main-con")
+          .removeClass("input-error");
+      } else {
+        if (this.isValidate == true)
+          $("#employee-department")
+            .parents(".combo-main-con")
+            .addClass("input-error");
       }
-      else{
-        if(this.isValidate == true){
-              $('#phone-number').removeClass('input-error');
-            }
-      }
-
-      $('#phone-number').addClass('input-error');
-      return false;
     },
 
     //Validate Email
@@ -1407,11 +1410,19 @@ export default {
       //   this.showErrorDialog("Email không được trống");
       //   return false;
       // } else
+      if (employeeEmail == null || employeeEmail == "") return true;
       if (!pattern.test(employeeEmail)) {
-        
         return false;
       }
       return true;
+    },
+
+    textchangeInputEmployeeEmail() {
+      if (this.validateEmail(this.employee.email)) {
+        $("#email").removeClass("input-error");
+      } else {
+        if (this.isValidate == true) $("#email").addClass("input-error");
+      }
     },
 
     //check toàn bộ thông tin trước khi ấn gửi
@@ -1424,15 +1435,17 @@ export default {
         this.showErrorDialog("Mã nhân viên không được để trống");
         this.inputId = "employee-code";
         this.isValidate = true;
+        $("#employee-code").addClass("input-error");
         return false;
       }
       //kiểm tra họ và tên
-      if (!this.validateFullName(this.employee.employeeName)) {
+      if (!this.validateEmployeeName(this.employee.employeeName)) {
         // document.getElementById("employee-name").focus();
         // return false;
         this.showErrorDialog("Họ tên không được để trống");
         this.inputId = "employee-name";
         this.isValidate = true;
+        $("#employee-name").addClass("input-error");
         return false;
       }
       //kiểm tra số căn cước
@@ -1443,43 +1456,116 @@ export default {
         this.inputId = "employee-department";
         $("#combo-employee-department").css("display", "block");
         this.isValidate = true;
+        $("#employee-department")
+          .parents(".combo-main-con")
+          .addClass("input-error");
         return false;
       }
       //kiểm tra email
       if (!this.validateEmail(this.employee.email)) {
         // document.getElementById("email").focus();
         // return false;
-        this.showErrorDialog("Số điện thoại không hợp lệ");
-        this.inputId = "phone-number";
-        this.isValidate = true;
-        return false;
-      }
-
-      //kiểm tra số điện thoại
-      if (!this.validatePhoneNumber(this.employee.phoneNumber)) {
-        // document.getElementById("phone-number").focus();
-        // return false;
         this.showErrorDialog("Email không hợp lệ. Ví dụ: abc@gmail.com");
         this.inputId = "email";
         this.isValidate = true;
+        $("#email").addClass("input-error");
         return false;
       }
 
-      console.log(this.customer);
       return true;
     },
 
+    addEmployee() {
+      var m = this;
+      if (this.checkInfoEmployee()) {
+        this.getGenderEmployee();
+        console.log(this.employee);
+        axios({
+          method: "post",
+          url: localhost,
+          data: this.employee,
+        })
+          .then(function (response) {
+            //thành công
+            console.log(response);
+          })
+          .catch(function (error) {
+            //gặp lỗi
+            var noti = error.response.data;
+            m.showErrorDialog(noti.userMsg);
+            if (noti.errorCode == "misa-001") {
+              m.inputId = "employee-code";
+            }
+            
+          });
+      }
+    },
+
+    editEmployee() {
+      var m = this;
+      if (this.checkInfoEmployee()) {
+        this.getGenderEmployee();
+        console.log(this.employee);
+        axios({
+          method: "put",
+          url: localhost + this.employee.employeeId,
+          data: this.employee,
+        })
+          .then(function (response) {
+            //thành công
+            console.log(response.status);
+          })
+          .catch(function (error) {
+            //gặp lỗi
+            var noti = error.response.data;
+            m.showErrorDialog(noti.userMsg);
+            if (noti.errorCode == "misa-001") {
+              m.inputId = "employee-code";
+            }
+            // console.log(response);
+          });
+      }
+    },
+
+    saveEmployee() {
+      if (this.isEdit == true) {
+        this.editEmployee();
+        // $("#add-employee-dialog").modal("hide");
+        this.loadData();
+      } else if (this.isEdit == false) {
+        this.addEmployee();
+        // $("#add-employee-dialog").modal("hide");
+        this.loadData();
+      }
+    },
+
     saveAndAddNewEmployee() {
-      this.getGenderEmployee();
-      this.checkInfoEmployee();
-      console.log(this.employee);
-      console.log(this.isEdit);
-      // this.employee = [];
+      if (this.isEdit == true) {
+        if (this.editEmployee()) {
+          this.employee = {};
+          this.loadData();
+        }
+      } else if (this.isEdit == false) {
+        if (this.addEmployee()) {
+          this.employee = {};
+          this.loadData();
+        }
+      }
+    },
+
+    loadData() {
+      this.$emit("loadData");
+    },
+
+    async loadDepartments() {
+      const response = await axios.get(localhostDepartment);
+      this.departments = response.data;
     },
   },
   created() {
     EventBus.$on("setIsEdit", (data) => (this.isEdit = data));
     EventBus.$on("setNewEmployee", (data) => (this.employee = data));
+    this.loadDepartments();
   },
 };
 </script>

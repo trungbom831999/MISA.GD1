@@ -37,7 +37,7 @@ namespace MISA.Core.Services
 
         public int Delete(Guid entityId)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Delete(entityId);
         }
     }
 }

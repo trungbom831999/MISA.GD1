@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class DepartmentService : BaseService<Department>
+    public class DepartmentService : BaseService<Department>, IDepartmentService
     {
         public DepartmentService(IBaseRepository<Department> baseRepository) : base(baseRepository)
         {

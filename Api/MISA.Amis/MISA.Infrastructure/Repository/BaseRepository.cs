@@ -77,13 +77,13 @@ namespace MISA.Infrastructure.Repository
 
         public int Delete(Guid entityId)
         {
-            //var storeParam = new
-            //{
-            //    CustomerId = entityId
-            //};
-            //var rowEffects = _dbConnection.Execute($"Proc_Delete{_tableName}By{_tableName}Id", param: storeParam, commandType: CommandType.StoredProcedure);
-            //return rowEffects;
-            throw new NotImplementedException();
+            var storeParam = new
+            {
+                Id = entityId
+            };
+            var rowEffects = _dbConnection.Execute($"Proc_Delete{_tableName}ById", param: storeParam, commandType: CommandType.StoredProcedure);
+            return rowEffects;
+            //throw new NotImplementedException();
         }
 
     }
