@@ -1,5 +1,4 @@
 <template>
-<div>
   <div class="title-distance lock-title-distance">
     <div class="header-di">
       <div class="title-di">Nhân viên</div>
@@ -10,11 +9,10 @@
             title="Thêm nhân viên"
             data-toggle="modal"
             data-target="#add-employee-dialog"
+            @click="setIsEditFalse(), setEmployeeCode()"
           >
             <div class="ms-button-text flex align-center">Thêm</div>
           </button>
-
-          
         </div>
       </div>
     </div>
@@ -23,8 +21,6 @@
       <a>Tất cả danh mục</a>
     </div>
   </div>
-  <!-- <AddEmployeeDialog /> -->
-</div>
 </template>
 
 <style>
@@ -104,11 +100,27 @@
 
 <script>
 // import AddEmployeeDialog from './dialog/AddEmployeeDialog.vue';
+import EventBus from "../main.js";
 
 export default {
   name: "Title",
   components: {
     // AddEmployeeDialog
   },
-}
-</script>ript
+  data() {
+    return {
+      employee: []
+    };
+  },
+  methods: {
+    setIsEditFalse() {
+      EventBus.$emit("setIsEdit", false);
+    },
+
+    setEmployeeCode() {
+      this.employee.employeeCode = "NKT99"
+      EventBus.$emit("setNewEmployee", this.employee);
+    },
+  },
+};
+</script>

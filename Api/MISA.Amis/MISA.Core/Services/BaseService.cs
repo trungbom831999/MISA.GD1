@@ -32,7 +32,7 @@ namespace MISA.Core.Services
 
         public int Update(MISAEntity entity, Guid entityId)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Update(entity, entityId);
         }
 
         public int Delete(Guid entityId)

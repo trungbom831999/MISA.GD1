@@ -13,6 +13,6 @@ namespace MISA.Core.Interfaces
     /// chứa 1 số hàm chi tiết cho nhân viên (check trùng mã,...)
     public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-
+        bool CheckEmployeeCode(string employeeCode);
     }
 }

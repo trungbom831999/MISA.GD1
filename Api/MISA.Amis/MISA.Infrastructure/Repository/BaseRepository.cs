@@ -65,11 +65,14 @@ namespace MISA.Infrastructure.Repository
 
         public int Update(MISAEntity entity, Guid entityId)
         {
-            //var storeName = $"Proc_Update{_tableName}";
-            //var storeParam = entity;
-            //var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
-            //return rowAffects;
-            throw new NotImplementedException();
+            var storeName = $"Proc_Update{_tableName}";
+            //DynamicParameters dynamicParameters = new DynamicParameters();
+            //var storeGetByIdInputParamName = $"@{_tableName}Id";
+            //dynamicParameters.Add(storeGetByIdInputParamName, entityId);
+            var storeParam = entity;
+            var rowAffects = _dbConnection.Execute(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
+            return rowAffects;
+            //throw new NotImplementedException();
         }
 
         public int Delete(Guid entityId)

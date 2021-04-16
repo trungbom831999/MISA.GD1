@@ -204,6 +204,7 @@
         </table>
         <div
           v-show="loading"
+          class="m-3"
           id="spinner-load-data"
           style="display: none !important"
         >
@@ -296,7 +297,7 @@
       </ul>
     </div>
     <!-- <EditEmployeeDialog /> -->
-    <AddEmployeeDialog :employee="employee"/>
+    <AddEmployeeDialog :employee="employee" :isEdit="true"/>
     <DeleteEmployeeDialog :employee="employee" />
   </div>
 </template>
@@ -802,14 +803,14 @@ export default {
     async getEmployeeById(id) {
       const response = await axios.get(localhost + id);
       this.employee = response.data;
-      console.log(this.employee);
+      // console.log(this.employee);
     },
 
     async loadData() {
       this.loading = true;
       const response = await axios.get(localhost);
 
-      console.log(response.data[0]);
+      // console.log(response.data[0]);
       this.loading = false;
       this.employees = response.data;
     },

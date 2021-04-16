@@ -1,5 +1,11 @@
 <template>
   <div class="modal fade" id="add-employee-dialog">
+    <div class="alert alert-warning" id="noti-alert">
+      <button type="button" class="close close-alert-btn" data-dismiss="alert">
+        x
+      </button>
+      <strong id="noti-alert-content"></strong>
+    </div>
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <!-- Dialog Header -->
@@ -267,6 +273,7 @@
                         class="form-control input-is-focus"
                         id="identity-number"
                         v-model="employee.identityNumber"
+                        @keypress="isNumber($event)"
                       />
                     </div>
                   </div>
@@ -350,6 +357,7 @@
                             class="form-control input-is-focus"
                             id="phone-number"
                             v-model="employee.phoneNumber"
+                            @keypress="isPhoneNumber($event)"
                           />
                         </div>
                       </div>
@@ -363,6 +371,7 @@
                             class="form-control input-is-focus"
                             id="tele-number"
                             v-model="employee.telephoneNumber"
+                            @keypress="isPhoneNumber($event)"
                           />
                         </div>
                       </div>
@@ -392,6 +401,7 @@
                         class="form-control input-is-focus"
                         id="employee-account-number"
                         v-model="employee.bankAccountNumber"
+                        @keypress="isNumber($event)"
                       />
                     </div>
                   </div>
@@ -452,7 +462,9 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="error-dialog">
+
+    <!-- thông báo lỗi  -->
+    <!-- <div class="modal fade" id="error-dialog">
       <div
         class="modal-dialog modal-dialog-centered"
         style="width: 444px; min-width: 444px"
@@ -465,7 +477,7 @@
               </div>
               <div class="message-content p-l-16 p-t-12">
                 <span id="idMessageError" class="message"
-                  >Tên không được để trống.</span
+                  ></span
                 >
               </div>
             </div>
@@ -481,6 +493,46 @@
                     Đóng
                   </div>
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="con-ms-message-box" id="error-dialog">
+      <div class="message-center">
+        <div class="ms-message-bg"></div>
+        <div class="drag-it-dude">
+          <div class="ms-mesage-box">
+            <div style="width: 444px; min-width: 444px">
+              <div class="padding-32">
+                <div class="content">
+                  <div class="icon-message">
+                    <div class="mi mi-48 mi-exclamation-error-48-2"></div>
+                  </div>
+                  <div class="message-content p-l-16 p-t-12">
+                    <span id="idMessageError" class="message"
+                      >Tên không được để trống.</span
+                    >
+                  </div>
+                </div>
+                <div class="mess-line"></div>
+                <div class="mess-footer">
+                  <div class="Center">
+                    <button
+                      name="button"
+                      class="ms-component ms-button ms-button-size-default ms-button-primary ms-button-primary-disabled-false ms-button-radius-false ms-button"
+                      @click="hideErrorDialog()"
+                    >
+                      <div
+                        class="ms-button-text ms-button--text flex align-center"
+                      >
+                        Đóng
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -507,13 +559,23 @@
   }
 }
 
+.modal .input-is-focus {
+  border: 1px solid #babec5;
+}
+
 .input-is-focus:focus {
-  border: 1px solid #2ca01c !important;
+  border-color: #2ca01c;
   box-shadow: none !important;
 }
 
-.modal input {
-  border: 1px solid #babec5 !important;
+.modal .input-is-focus:focus:hover {
+  /* border: 1px solid #babec5; */
+  outline: none;
+}
+
+.modal .input-is-focus:hover {
+  /* border: 1px solid #babec5; */
+  outline: 1px solid #e2e2e2;
 }
 
 .ms-popup--title {
@@ -888,7 +950,7 @@
 
 /**Footer Dialog */
 .ms-popup-footer {
-  padding-right: 11px;
+  /* padding-right: 11px; */
 }
 
 .divide {
@@ -944,6 +1006,57 @@
 }
 
 /**Dialog cảnh báo */
+#error-dialog {
+  display: none;
+}
+
+.con-ms-message-box {
+  transition: all 0.2s;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20000;
+  opacity: 1;
+}
+
+.message-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ms-message-bg {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 10;
+  transition: all 0.25s ease;
+  opacity: 1;
+}
+
+.drag-it-dude {
+  position: absolute;
+  z-index: 100;
+}
+
+.ms-mesage-box {
+  position: relative;
+  transition: all 0.2s;
+  z-index: 100;
+  box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
+  background: #fff;
+  -webkit-animation: rebound-data-v-b33a4368 0.3s;
+  animation: rebound-data-v-b33a4368 0.3s;
+  border-radius: 3px;
+}
+
 .mi-exclamation-error-48-2 {
   background-position: -24px -954px;
 }
@@ -953,17 +1066,41 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* Alert */
+.alert {
+  position: absolute !important;
+  top: 28px;
+  /* left: 50%; */
+  right: 0;
+  z-index: 2000;
+  display: none;
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.close-alert-btn {
+  margin-left: 16px;
+  margin-top: -2px;
+}
 </style>
 
 <script>
 import JQuery from "jquery";
 let $ = JQuery;
+import EventBus from "../../main.js";
 
 export default {
-  props: ["employee"],
+  props: ["employee", "isEdit"],
   data() {
     return {
       loading: true,
+      isValidate: false,
+      inputId: "",
       employeeId: "",
       employees: [],
       departments: [
@@ -1037,6 +1174,7 @@ export default {
     var comboEmployeeDepartment = document.getElementById(
       "combo-employee-department"
     );
+
     btnComboEmployeeDepartment.onclick = function () {
       if (comboEmployeeDepartment.style.display === "none") {
         comboEmployeeDepartment.style.display = "block";
@@ -1044,29 +1182,60 @@ export default {
         comboEmployeeDepartment.style.display = "none";
       }
     };
+
+    var inputEmployeeDepartment = document.getElementById(
+      "employee-department"
+    );
+    inputEmployeeDepartment.onfocus = function () {
+      inputEmployeeDepartment
+        .closest(".combo-main-con")
+        .classList.add("input-focus");
+    };
+
+    inputEmployeeDepartment.onblur = function () {
+      inputEmployeeDepartment
+        .closest(".combo-main-con")
+        .classList.remove("input-focus");
+    };
   },
   methods: {
     hideErrorDialog() {
-      $("#error-dialog").modal("hide");
+      // $("#error-dialog").modal("hide");
+      $("#error-dialog").css("display", "none");
+      $("#" + this.inputId).focus();
+    },
+
+    showErrorDialog(content) {
+      $("#idMessageError").text(content);
+      $("#error-dialog").css("display", "block");
     },
 
     hideComboEmployeeDepartment() {
       $("#combo-employee-department").css("display", "none");
     },
 
-    setDepartmentIdToEmployee(departmentId, departmentName) {
-      this.employee.departmentId = departmentId;
-      this.employee.departmentName = departmentName;
+    showWarningAlert(content) {
+      $("#noti-alert-content").text(content);
+      $("#noti-alert")
+        .fadeTo(4000, 500)
+        .slideUp(500, function () {
+          $("#noti-alert").slideUp(500);
+        });
     },
 
-    getGenderEmployee(){
-      if($('#gender-male').is(":checked")){
+    setDepartmentIdToEmployee(departmentId, departmentName) {
+      // console.log(departmentId +" "+ departmentName);
+      this.employee.departmentId = departmentId;
+      this.employee.departmentName = departmentName;
+      console.log(this.employee.departmentId +" "+ this.employee.departmentName);
+    },
+
+    getGenderEmployee() {
+      if ($("#gender-male").is(":checked")) {
         this.employee.gender = 0;
-      }
-      else if($('#gender-female').is(":checked")){
+      } else if ($("#gender-female").is(":checked")) {
         this.employee.gender = 1;
-      }
-      else{
+      } else if ($("#gender-other").is(":checked")) {
         this.employee.gender = 2;
       }
     },
@@ -1144,11 +1313,173 @@ export default {
       }
     },
 
-    saveAndAddNewEmployee(){
+    //validate mã nhân viên
+    validateEmployeeCode(employeeCode) {
+      // employeeCode = employeeCode.trim();
+      if (employeeCode == null || employeeCode == "") {
+        $("#employee-code").addClass("input-error");
+        return false;
+      } else {
+        if (this.isValidate == true) {
+          $("#employee-code").removeClass("input-error");
+        }
+      }
+
+      return true;
+    },
+
+    //validate họ và tên
+    validateFullName(employeeFullName) {
+      // employeeFullName = employeeFullName.trim();
+      if (employeeFullName == null || employeeFullName == "") {
+        $("#employee-name").addClass("input-error");
+        return false;
+      }
+
+      return true;
+    },
+
+    //validate đơn vị công tác của nhân viên
+    validateDepartment(employeeDepartment) {
+      // employeeDepartment = employeeDepartment.trim();
+      if (employeeDepartment == null || employeeDepartment == "") {
+          $("#employee-department").parents('.combo-main-con').addClass("input-error");
+        
+        return false;
+      } else {
+        if (this.isValidate == true) {
+          $("#employee-department").parents('.combo-main-con').removeClass("input-error");
+        }
+      }
+      return true;
+    },
+
+    //Validate số điện thoại 10 số
+    validatePhoneNumber(employeePhone) {
+      // employeePhone = employeePhone.trim();
+      // if (employeePhone == null || employeePhone == "") {
+      //   this.showErrorDialog("Số điện thoại không được trống");
+      //   return false;
+      // }
+      // var phone = employeePhone.trim();
+      var phone = employeePhone;
+      phone = phone.replace("(+84)", "0");
+      phone = phone.replace("+84", "0");
+      phone = phone.replace("0084", "0");
+      phone = phone.replace(/ /g, "");
+      if (phone != "") {
+        var firstNumber = phone.substring(0, 2);
+        if (
+          (firstNumber == "09" || firstNumber == "08") &&
+          phone.length == 10
+        ) {
+          if (phone.match(/^\d{10}/)) {
+            if(this.isValidate == true){
+              $('#phone-number').removeClass('input-error');
+            }
+            return true;
+          }
+        } else if (firstNumber == "01" && phone.length == 11) {
+          if (phone.match(/^\d{11}/)) {
+            if(this.isValidate == true){
+              $('#phone-number').removeClass('input-error');
+            }
+            return true;
+          }
+        }
+      }
+      else{
+        if(this.isValidate == true){
+              $('#phone-number').removeClass('input-error');
+            }
+      }
+
+      $('#phone-number').addClass('input-error');
+      return false;
+    },
+
+    //Validate Email
+    validateEmail(employeeEmail) {
+      var pattern = /^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+      // employeeEmail = employeeEmail.trim();
+      // if (employeeEmail == null || employeeEmail == "") {
+      //   this.showErrorDialog("Email không được trống");
+      //   return false;
+      // } else
+      if (!pattern.test(employeeEmail)) {
+        
+        return false;
+      }
+      return true;
+    },
+
+    //check toàn bộ thông tin trước khi ấn gửi
+    checkInfoEmployee() {
+      console.log("dô check all");
+      //kiểm tra mã nhân viên
+      if (!this.validateEmployeeCode(this.employee.employeeCode)) {
+        // document.getElementById("employee-code").focus();
+        // return false;
+        this.showErrorDialog("Mã nhân viên không được để trống");
+        this.inputId = "employee-code";
+        this.isValidate = true;
+        return false;
+      }
+      //kiểm tra họ và tên
+      if (!this.validateFullName(this.employee.employeeName)) {
+        // document.getElementById("employee-name").focus();
+        // return false;
+        this.showErrorDialog("Họ tên không được để trống");
+        this.inputId = "employee-name";
+        this.isValidate = true;
+        return false;
+      }
+      //kiểm tra số căn cước
+      if (!this.validateDepartment(this.employee.departmentName)) {
+        // document.getElementById("employee-department").focus();
+        // return false;
+        this.showErrorDialog("Vui lòng chọn đơn vị");
+        this.inputId = "employee-department";
+        $("#combo-employee-department").css("display", "block");
+        this.isValidate = true;
+        return false;
+      }
+      //kiểm tra email
+      if (!this.validateEmail(this.employee.email)) {
+        // document.getElementById("email").focus();
+        // return false;
+        this.showErrorDialog("Số điện thoại không hợp lệ");
+        this.inputId = "phone-number";
+        this.isValidate = true;
+        return false;
+      }
+
+      //kiểm tra số điện thoại
+      if (!this.validatePhoneNumber(this.employee.phoneNumber)) {
+        // document.getElementById("phone-number").focus();
+        // return false;
+        this.showErrorDialog("Email không hợp lệ. Ví dụ: abc@gmail.com");
+        this.inputId = "email";
+        this.isValidate = true;
+        return false;
+      }
+
+      console.log(this.customer);
+      return true;
+    },
+
+    saveAndAddNewEmployee() {
       this.getGenderEmployee();
+      this.checkInfoEmployee();
       console.log(this.employee);
-      this.employee = [];
-    }
+      console.log(this.isEdit);
+      // this.employee = [];
+    },
+  },
+  created() {
+    EventBus.$on("setIsEdit", (data) => (this.isEdit = data));
+    EventBus.$on("setNewEmployee", (data) => (this.employee = data));
   },
 };
 </script>
