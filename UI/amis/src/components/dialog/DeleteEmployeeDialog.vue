@@ -110,8 +110,8 @@ export default {
   name: "DeleteEmployee",
   props: ["employee"],
   methods: {
-    deleteEmployee() {
-      axios({
+    async deleteEmployee() {
+      await axios({
         method: "delete",
         url: localhost + this.employee.employeeId,
       })

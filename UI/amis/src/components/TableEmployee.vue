@@ -146,7 +146,7 @@
                     >
                       <div
                         class="ms-button-text flex align-center"
-                        @click="getEmployeeById(employee.employeeId)"
+                        @click="getEmployeeById(employee.employeeId), setIsEditTrue()"
                       >
                         Sửa
                       </div>
@@ -221,7 +221,7 @@
         <div class="ms-panigation">
           <div class="flex items-center justify-between w-full pagination-bar">
             <div class="left-pagination">
-              <div class="total-record">Tổng số: <b>1000</b> bản ghi</div>
+              <div class="total-record">Tổng số: <b>{{employees.length}}</b> bản ghi</div>
             </div>
 
             <div class="flex postion-pagination align-center">
@@ -297,7 +297,7 @@
       </ul>
     </div>
     <!-- <EditEmployeeDialog /> -->
-    <AddEmployeeDialog @loadData="loadData" :employee="employee" :isEdit="true"/>
+    <AddEmployeeDialog @loadData="loadData" :employee="employee"/>
     <DeleteEmployeeDialog @loadData="loadData" :employee="employee" />
   </div>
 </template>
@@ -683,6 +683,7 @@ let $ = JQuery;
 // import EditEmployeeDialog from './dialog/EditEmployeeDialog.vue';
 import AddEmployeeDialog from './dialog/AddEmployeeDialog.vue';
 import DeleteEmployeeDialog from "./dialog/DeleteEmployeeDialog.vue";
+import EventBus from "../main.js";
 
 var idEmployee = "";
 var localhost = "https://localhost:44397/api/v1/Employees/";
@@ -697,6 +698,7 @@ export default {
   data() {
     return {
       loading: true,
+      isEdit: true,
       employeeId: "",
       employee: {},
       employees: [],
@@ -771,6 +773,10 @@ export default {
     //     });
     //   });
     // },
+
+    setIsEditTrue() {
+      EventBus.$emit("setIsEdit", true);
+    },
 
     showMenuForEmployee() {
       var menuOption = document.getElementById("menu-for-employee");

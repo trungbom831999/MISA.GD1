@@ -9,5 +9,11 @@ namespace MISA.Core.Interfaces
 {
     public interface IEmployeeService : IBaseService<Employee>
     {
+        /// <summary>
+        /// Lấy số bản ghi của bảng nhân viên
+        /// </summary>
+        /// <returns>Số bản ghi</returns>
+        /// CreatedBy: NKTrung (16/04/2021)
+        int GetCountEmPloyees();
     }
 }

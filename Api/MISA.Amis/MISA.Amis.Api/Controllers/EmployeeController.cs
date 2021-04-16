@@ -104,7 +104,7 @@ namespace MISA.Amis.Api.Controllers
         }
 
         /// <summary>
-        /// Xóa khách hàng
+        /// Xóa nhân viên
         /// </summary>
         /// <param name="employeeId">Khóa chính bảng thông tin nhân viên</param>
         /// <returns>
@@ -118,6 +118,26 @@ namespace MISA.Amis.Api.Controllers
         {
             // Thực hiện xóa dữ liệu từ Database:
             var rowEffects = _employeeService.Delete(employeeId);
+            // Kiểm tra kết quả và trả về cho Client:
+            if (rowEffects == 0)
+            {
+                return NoContent();
+            }
+            else
+                return Ok(rowEffects);
+        }
+
+        /// <summary>
+        /// Đếm số bản ghi nhân viên
+        /// </summary>
+        /// <returns>
+        /// Số lượng bản ghi
+        /// </returns>
+        /// CreatedBy: NKTrung (16/04/2021)
+        [HttpGet("Count")]
+        public IActionResult GetCountEmployees()
+        {
+            var rowEffects = _employeeService.GetCountEmPloyees();
             // Kiểm tra kết quả và trả về cho Client:
             if (rowEffects == 0)
             {

@@ -10,9 +10,15 @@ namespace MISA.Core.Services
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService 
     {
-        public EmployeeService(IBaseRepository<Employee> baseRepository) : base(baseRepository)
+        IEmployeeRepository _employeeRepository;
+        public EmployeeService(IEmployeeRepository employeeRepository, IBaseRepository<Employee> baseRepository) : base(baseRepository)
         {
+            _employeeRepository = employeeRepository;
+        }
 
+        public int GetCountEmPloyees()
+        {
+            return _employeeRepository.GetCountEmPloyees();
         }
     }
 }

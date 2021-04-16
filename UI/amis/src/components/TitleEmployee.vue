@@ -109,7 +109,26 @@ export default {
   },
   data() {
     return {
-      employee: []
+      employee: {
+        employeeCode: "",
+        employeeName: "",
+        dateOfBirth: null,
+        gender: 0,
+        departmentId: "",
+        identityNumber: "",
+        identityDate: null,
+        identityPlace: "",
+        employeePosition: "",
+        address: "",
+        bankAccountNumber: "",
+        bankName: "",
+        bankBranchName: "",
+        bankProvinceName: "",
+        phoneNumber: "",
+        telephoneNumber: "",
+        email: "",
+        departmentName: ""
+      }
     };
   },
   methods: {
@@ -118,7 +137,7 @@ export default {
     },
 
     setEmployeeCode() {
-      this.employee.employeeCode = "NKT99"
+      this.employee.employeeCode = "NKT99";
       EventBus.$emit("setNewEmployee", this.employee);
     },
   },

@@ -76,7 +76,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-code"
-                        v-model="employee.employeeCode"
+                        v-model="employeeInternal.employeeCode"
                         @input="textchangeInputEmployeeCode()"
                       />
                     </div>
@@ -91,7 +91,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-name"
-                        v-model="employee.employeeName"
+                        v-model="employeeInternal.employeeName"
                         @input="textchangeInputEmployeeName()"
                       />
                     </div>
@@ -112,8 +112,7 @@
                         class="combo-input"
                         id="employee-department"
                         readonly
-                        v-model="employee.departmentName"
-                        @change="textchangeInputDepartment()"
+                        v-model="employeeInternal.departmentName"
                       />
                     </div>
 
@@ -206,7 +205,7 @@
                     type="text"
                     class="form-control input-is-focus"
                     id="employee-position"
-                    v-model="employee.employeePosition"
+                    v-model="employeeInternal.employeePosition"
                   />
                 </div>
               </div>
@@ -222,7 +221,9 @@
                         class="form-control input-is-focus"
                         id="date-of-birth"
                         :value="
-                          changeDatetimeToDateForInput(employee.dateOfBirth)
+                          changeDatetimeToDateForInput(
+                            employeeInternal.dateOfBirth
+                          )
                         "
                         @change="setDateOfBirth($event)"
                       />
@@ -239,7 +240,7 @@
                             type="radio"
                             id="gender-male"
                             name="radio-group"
-                            :checked="employee.gender == 0"
+                            :checked="employeeInternal.gender == 0"
                           />
                           <label for="gender-male" class="mr-4">Nam</label>
                         </p>
@@ -248,7 +249,7 @@
                             type="radio"
                             id="gender-female"
                             name="radio-group"
-                            :checked="employee.gender == 1"
+                            :checked="employeeInternal.gender == 1"
                           />
                           <label for="gender-female">Nữ</label>
                         </p>
@@ -257,7 +258,7 @@
                             type="radio"
                             id="gender-other"
                             name="radio-group"
-                            :checked="employee.gender == 2"
+                            :checked="employeeInternal.gender == 2"
                           />
                           <label for="gender-other">Khác</label>
                         </p>
@@ -276,7 +277,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="identity-number"
-                        v-model="employee.identityNumber"
+                        v-model="employeeInternal.identityNumber"
                         @keypress="isNumber($event)"
                       />
                     </div>
@@ -291,7 +292,9 @@
                         class="form-control input-is-focus"
                         id="identity-date"
                         :value="
-                          changeDatetimeToDateForInput(employee.identityDate)
+                          changeDatetimeToDateForInput(
+                            employeeInternal.identityDate
+                          )
                         "
                         @change="setIdentityDate($event)"
                       />
@@ -307,7 +310,7 @@
                     type="text"
                     class="form-control input-is-focus"
                     id="identity-place"
-                    v-model="employee.identityPlace"
+                    v-model="employeeInternal.identityPlace"
                   />
                 </div>
               </div>
@@ -347,7 +350,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-adress"
-                        v-model="employee.address"
+                        v-model="employeeInternal.address"
                       />
                     </div>
                     <div class="row p-r-26">
@@ -360,7 +363,7 @@
                             type="tel"
                             class="form-control input-is-focus"
                             id="phone-number"
-                            v-model="employee.phoneNumber"
+                            v-model="employeeInternal.phoneNumber"
                             @keypress="isPhoneNumber($event)"
                           />
                         </div>
@@ -374,7 +377,7 @@
                             type="tel"
                             class="form-control input-is-focus"
                             id="tele-number"
-                            v-model="employee.telephoneNumber"
+                            v-model="employeeInternal.telephoneNumber"
                             @keypress="isPhoneNumber($event)"
                           />
                         </div>
@@ -388,7 +391,7 @@
                             type="email"
                             class="form-control input-is-focus"
                             id="email"
-                            v-model="employee.email"
+                            v-model="employeeInternal.email"
                             @input="textchangeInputEmployeeEmail()"
                           />
                         </div>
@@ -405,7 +408,7 @@
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-account-number"
-                        v-model="employee.bankAccountNumber"
+                        v-model="employeeInternal.bankAccountNumber"
                         @keypress="isNumber($event)"
                       />
                     </div>
@@ -438,7 +441,7 @@
                     <div>
                       <button
                         class="ms-button-size-default ms-button-primary ms-button-radius-false ms-button"
-                        @click="saveAndAddNewEmployee()"
+                        @click="saveAndAndAddNewOne()"
                       >
                         <div
                           class="ms-button-text ms-button--text flex align-center"
@@ -518,9 +521,7 @@
                     <div class="mi mi-48 mi-exclamation-error-48-2"></div>
                   </div>
                   <div class="message-content p-l-16 p-t-12">
-                    <span id="idMessageError" class="message"
-                      >Tên không được để trống.</span
-                    >
+                    <span id="idMessageError" class="message"></span>
                   </div>
                 </div>
                 <div class="mess-line"></div>
@@ -1112,17 +1113,32 @@ export default {
         return {};
       },
     },
-    isEdit: {
-      type: Boolean,
-      default() {
-        return false;
-      },
+    // isEditPass: {
+    //   type: Boolean,
+    //   default() {
+    //     return false;
+    //   },
+    // },
+  },
+  watch: {
+    employee(newV, oldV) {
+      // debugger
+      if (newV) {
+        this.employeeInternal = newV;
+      }
+      console.log(newV);
+      console.log(oldV);
+    },
+    employeeInternal(newV, oldV) {
+      // debugger
+      console.log(newV);
+      console.log(oldV);
     },
   },
   data() {
     return {
-      // isEdit: this.isEditPass,
-      // employee: JSON.parse(this.employeePass),
+      isEdit: true,
+      employeeInternal: this.employee,
       loading: true,
       isValidate: false,
       inputId: "",
@@ -1136,6 +1152,7 @@ export default {
     // $("#error-dialog").modal("show");
     $("#add-employee-dialog").on("shown.bs.modal", function () {
       document.getElementById("employee-code").focus();
+      // this.employeeInternal = this.employeePass;
     });
     //checkbox
     var checkboxIsCustomer = $("#isCustomer");
@@ -1215,6 +1232,10 @@ export default {
     };
   },
   methods: {
+    setEmployee(data) {
+      // debugger
+      this.employeeInternal = data;
+    },
     showIsValidate() {
       console.log(this.isValidate);
     },
@@ -1245,10 +1266,12 @@ export default {
 
     setDepartmentIdToEmployee(departmentId, departmentName) {
       // console.log(departmentId +" "+ departmentName);
-      this.employee.departmentId = departmentId;
-      this.employee.departmentName = departmentName;
+      this.employeeInternal.departmentId = departmentId;
+      this.employeeInternal.departmentName = departmentName;
       console.log(
-        this.employee.departmentId + " " + this.employee.departmentName
+        this.employeeInternal.departmentId +
+          " " +
+          this.employeeInternal.departmentName
       );
       $("#employee-department")
         .parents(".combo-main-con")
@@ -1257,11 +1280,11 @@ export default {
 
     getGenderEmployee() {
       if ($("#gender-male").is(":checked")) {
-        this.employee.gender = 0;
+        this.employeeInternal.gender = 0;
       } else if ($("#gender-female").is(":checked")) {
-        this.employee.gender = 1;
+        this.employeeInternal.gender = 1;
       } else if ($("#gender-other").is(":checked")) {
-        this.employee.gender = 2;
+        this.employeeInternal.gender = 2;
       }
     },
 
@@ -1297,14 +1320,14 @@ export default {
 
     //set ngày sinh cho nhân viên
     setDateOfBirth(event) {
-      this.employee.dateOfBirth = event.target.value;
-      console.log(this.employee.dateOfBirth);
+      this.employeeInternal.dateOfBirth = event.target.value;
+      console.log(this.employeeInternal.dateOfBirth);
     },
 
     //set ngày cấp CMND cho nhân viên
     setIdentityDate(event) {
-      this.employee.identityDate = event.target.value;
-      console.log(this.employee.identityDate);
+      this.employeeInternal.identityDate = event.target.value;
+      console.log(this.employeeInternal.identityDate);
     },
 
     //input chỉ có số
@@ -1349,7 +1372,7 @@ export default {
     },
 
     textchangeInputEmployeeCode() {
-      if (this.validateEmployeeCode(this.employee.employeeCode)) {
+      if (this.validateEmployeeCode(this.employeeInternal.employeeCode)) {
         $("#employee-code").removeClass("input-error");
       } else {
         if (this.isValidate == true) {
@@ -1369,7 +1392,7 @@ export default {
     },
 
     textchangeInputEmployeeName() {
-      if (this.validateEmployeeCode(this.employee.employeeName)) {
+      if (this.validateEmployeeCode(this.employeeInternal.employeeName)) {
         $("#employee-name").removeClass("input-error");
       } else {
         if (this.isValidate == true)
@@ -1389,7 +1412,7 @@ export default {
     },
 
     textchangeInputDepartment() {
-      if (this.validateEmployeeCode(this.employee.employeeDepartment)) {
+      if (this.validateEmployeeCode(this.employeeInternal.employeeDepartment)) {
         $("#employee-department")
           .parents(".combo-main-con")
           .removeClass("input-error");
@@ -1418,7 +1441,7 @@ export default {
     },
 
     textchangeInputEmployeeEmail() {
-      if (this.validateEmail(this.employee.email)) {
+      if (this.validateEmail(this.employeeInternal.email)) {
         $("#email").removeClass("input-error");
       } else {
         if (this.isValidate == true) $("#email").addClass("input-error");
@@ -1429,7 +1452,7 @@ export default {
     checkInfoEmployee() {
       console.log("dô check all");
       //kiểm tra mã nhân viên
-      if (!this.validateEmployeeCode(this.employee.employeeCode)) {
+      if (!this.validateEmployeeCode(this.employeeInternal.employeeCode)) {
         // document.getElementById("employee-code").focus();
         // return false;
         this.showErrorDialog("Mã nhân viên không được để trống");
@@ -1439,7 +1462,7 @@ export default {
         return false;
       }
       //kiểm tra họ và tên
-      if (!this.validateEmployeeName(this.employee.employeeName)) {
+      if (!this.validateEmployeeName(this.employeeInternal.employeeName)) {
         // document.getElementById("employee-name").focus();
         // return false;
         this.showErrorDialog("Họ tên không được để trống");
@@ -1449,9 +1472,10 @@ export default {
         return false;
       }
       //kiểm tra số căn cước
-      if (!this.validateDepartment(this.employee.departmentName)) {
+      if (!this.validateDepartment(this.employeeInternal.departmentName)) {
         // document.getElementById("employee-department").focus();
         // return false;
+        console.log("dô department");
         this.showErrorDialog("Vui lòng chọn đơn vị");
         this.inputId = "employee-department";
         $("#combo-employee-department").css("display", "block");
@@ -1462,7 +1486,7 @@ export default {
         return false;
       }
       //kiểm tra email
-      if (!this.validateEmail(this.employee.email)) {
+      if (!this.validateEmail(this.employeeInternal.email)) {
         // document.getElementById("email").focus();
         // return false;
         this.showErrorDialog("Email không hợp lệ. Ví dụ: abc@gmail.com");
@@ -1475,18 +1499,69 @@ export default {
       return true;
     },
 
+    resetEmployeeInternal() {
+      // this.employeeInternal.employeeCode = "";
+      // this.employeeInternal.employeeName = "";
+      // this.employeeInternal.dateOfBirth = "";
+      // this.employeeInternal.gender = 0;
+      // this.employeeInternal.departmentId = "";
+      // this.employeeInternal.identityNumber = "";
+      // this.employeeInternal.identityDate = "";
+      // this.employeeInternal.identityPlace = "";
+      // this.employeeInternal.employeePosition = "";
+      // this.employeeInternal.address = "";
+      // this.employeeInternal.bankAccountNumber = "";
+      // this.employeeInternal.bankName = "";
+      // this.employeeInternal.bankBranchName = "";
+      // this.employeeInternal.bankProvinceName = "";
+      // this.employeeInternal.phoneNumber = "";
+      // this.employeeInternal.telephoneNumber = "";
+      // this.employeeInternal.email = "";
+      // this.employeeInternal.departmentName = "";
+      var employeeReset = {
+        employeeCode: "",
+        employeeName: "",
+        dateOfBirth: null,
+        gender: 0,
+        departmentId: "",
+        identityNumber: "",
+        identityDate: null,
+        identityPlace: "",
+        employeePosition: "",
+        address: "",
+        bankAccountNumber: "",
+        bankName: "",
+        bankBranchName: "",
+        bankProvinceName: "",
+        phoneNumber: "",
+        telephoneNumber: "",
+        email: "",
+        departmentName: "",
+      };
+
+      EventBus.$emit("setNewEmployee", employeeReset);
+    },
+
+    resetSubVariable() {
+      this.isValidate = false;
+      this.inputId = "";
+    },
+
     addEmployee() {
       var m = this;
       if (this.checkInfoEmployee()) {
         this.getGenderEmployee();
-        console.log(this.employee);
+        console.log(this.employeeInternal);
         axios({
           method: "post",
           url: localhost,
-          data: this.employee,
+          data: this.employeeInternal,
         })
           .then(function (response) {
             //thành công
+            $("#add-employee-dialog").modal("hide");
+            m.resetSubVariable();
+            m.loadData();
             console.log(response);
           })
           .catch(function (error) {
@@ -1496,7 +1571,6 @@ export default {
             if (noti.errorCode == "misa-001") {
               m.inputId = "employee-code";
             }
-            
           });
       }
     },
@@ -1505,14 +1579,78 @@ export default {
       var m = this;
       if (this.checkInfoEmployee()) {
         this.getGenderEmployee();
-        console.log(this.employee);
+        console.log(this.employeeInternal);
         axios({
           method: "put",
-          url: localhost + this.employee.employeeId,
-          data: this.employee,
+          url: localhost + this.employeeInternal.employeeId,
+          data: this.employeeInternal,
         })
           .then(function (response) {
             //thành công
+            $("#add-employee-dialog").modal("hide");
+            m.resetSubVariable();
+            m.loadData();
+            console.log(response.status);
+          })
+          .catch(function (error) {
+            //gặp lỗi
+            var noti = error.response.data;
+            m.showErrorDialog(noti.userMsg);
+            if (noti.errorCode == "misa-001") {
+              m.inputId = "employee-code";
+            }
+            // console.log(response);
+          });
+      }
+    },
+
+    addEmployeeAndAddNewOne() {
+      var m = this;
+      if (this.checkInfoEmployee()) {
+        this.getGenderEmployee();
+        console.log(this.employeeInternal);
+        axios({
+          method: "post",
+          url: localhost,
+          data: this.employeeInternal,
+        })
+          .then(function (response) {
+            //thành công
+            m.resetEmployeeInternal();
+            m.resetSubVariable();
+            m.isEdit = false;
+            $("#employee-code").focus();
+            m.loadData();
+            console.log(response);
+          })
+          .catch(function (error) {
+            //gặp lỗi
+            var noti = error.response.data;
+            m.showErrorDialog(noti.userMsg);
+            if (noti.errorCode == "misa-001") {
+              m.inputId = "employee-code";
+            }
+          });
+      }
+    },
+
+    editEmployeeAndAddNewOne() {
+      var m = this;
+      if (this.checkInfoEmployee()) {
+        this.getGenderEmployee();
+        console.log(this.employeeInternal);
+        axios({
+          method: "put",
+          url: localhost + this.employeeInternal.employeeId,
+          data: this.employeeInternal,
+        })
+          .then(function (response) {
+            //thành công
+            m.resetEmployeeInternal();
+            m.resetSubVariable();
+            m.isEdit = false;
+            $("#employee-code").focus();
+            m.loadData();
             console.log(response.status);
           })
           .catch(function (error) {
@@ -1531,25 +1669,24 @@ export default {
       if (this.isEdit == true) {
         this.editEmployee();
         // $("#add-employee-dialog").modal("hide");
-        this.loadData();
+        // this.loadData();
       } else if (this.isEdit == false) {
         this.addEmployee();
         // $("#add-employee-dialog").modal("hide");
-        this.loadData();
+        // this.loadData();
       }
+      // console.log(this.isEdit);
+      // console.log(this.isEditPass);
+      console.log(this.employeeInternal);
     },
 
-    saveAndAddNewEmployee() {
+    saveAndAndAddNewOne() {
       if (this.isEdit == true) {
-        if (this.editEmployee()) {
-          this.employee = {};
-          this.loadData();
-        }
+        this.editEmployeeAndAddNewOne();
+        // this.loadData();
       } else if (this.isEdit == false) {
-        if (this.addEmployee()) {
-          this.employee = {};
-          this.loadData();
-        }
+        this.addEmployeeAndAddNewOne();
+        // this.loadData();
       }
     },
 
@@ -1564,7 +1701,7 @@ export default {
   },
   created() {
     EventBus.$on("setIsEdit", (data) => (this.isEdit = data));
-    EventBus.$on("setNewEmployee", (data) => (this.employee = data));
+    EventBus.$on("setNewEmployee", this.setEmployee);
     this.loadDepartments();
   },
 };
