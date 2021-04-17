@@ -398,19 +398,51 @@
                       </div>
                     </div>
 
-                    <div class="form-group p-r-11">
-                      <label
+                    <div class="row p-r-26">
+                      <div class="col-md-3 col-12 p-r-6">
+                        <div class="form-group">
+                          <label
+                            class="flex label-input"
+                            for="employee-account-number"
+                            >Tài khoản ngân hàng
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control input-is-focus"
+                            id="employee-account-number"
+                            v-model="employeeInternal.bankAccountNumber"
+                            @keypress="isNumber($event)"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-12 pl-0 p-r-6">
+                        <div class="form-group">
+                          <label
                         class="flex label-input"
                         for="employee-account-number"
-                        >Tài khoản ngân hàng
+                        >Tên ngân hàng
                       </label>
                       <input
                         type="text"
                         class="form-control input-is-focus"
                         id="employee-account-number"
-                        v-model="employeeInternal.bankAccountNumber"
-                        @keypress="isNumber($event)"
+                        v-model="employeeInternal.bankName"
                       />
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-12 pl-0 p-r-6">
+                        <div class="form-group">
+                          <label class="flex label-input" for="email"
+                            >Chi nhánh
+                          </label>
+                          <input
+                            type="email"
+                            class="form-control input-is-focus"
+                            id="email"
+                            v-model="employeeInternal.bankBranchName"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div id="bank-account-tab" class="container tab-pane fade">
