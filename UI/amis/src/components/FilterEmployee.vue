@@ -10,10 +10,13 @@
               type="text"
               placeholder="Tìm theo mã, tên nhân viên"
               style="border: 1px solid #babec5"
+              v-model="keyWordSearch"
+              @keyup.enter="searchEmployees()"
             />
             <label
               class="icon-inputx notranslate ms-input--icon icon-after mi-search mi mi-16"
               for="search-employee-input"
+              @click="searchEmployees()"
             ></label>
           </div>
         </div>
@@ -75,11 +78,22 @@
 </style>
 
 <script>
+import EventBus from "../main.js";
+
 export default {
+  data() {
+    return {
+      keyWordSearch: ""
+    }},
   mounted() {
     window.onload = function () {
       document.getElementById("search-employee-input").focus();
     };
+  },
+  methods:{
+    searchEmployees() {
+      EventBus.$emit("searchEmployees", this.keyWordSearch);
+    },
   },
 };
 </script>

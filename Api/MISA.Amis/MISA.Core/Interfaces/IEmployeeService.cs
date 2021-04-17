@@ -15,5 +15,12 @@ namespace MISA.Core.Interfaces
         /// <returns>Số bản ghi</returns>
         /// CreatedBy: NKTrung (16/04/2021)
         int GetCountEmPloyees();
+
+        /// <summary>
+        /// Tìm kiếm nhân viên theo mã hoặc tên
+        /// </summary>
+        /// <returns>Danh sách nhân viên</returns>
+        /// CreatedBy: NKTrung (16/04/2021)
+        IEnumerable<Employee> SearchEmployeesByEmployeeCodeOrEmployeeName(string keyWord);
     }
 }

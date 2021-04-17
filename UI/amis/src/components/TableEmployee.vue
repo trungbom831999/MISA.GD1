@@ -820,9 +820,19 @@ export default {
       this.loading = false;
       this.employees = response.data;
     },
+
+    async searchEmployees(data){
+      this.loading = true;
+      const response = await axios.get(localhost+"Search?keyword="+data);
+
+      // console.log(response.data[0]);
+      this.loading = false;
+      this.employees = response.data;
+    }
   },
   async created() {
     this.loadData();
+    EventBus.$on("searchEmployees", this.searchEmployees);
   },
 };
 </script>

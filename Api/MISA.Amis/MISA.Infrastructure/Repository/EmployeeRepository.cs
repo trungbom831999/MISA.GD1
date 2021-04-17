@@ -18,7 +18,17 @@ namespace MISA.Infrastructure.Repository
             //var entities = _dbConnection.Query<MISAEntity>(storeName, new { offset = 0, limmit = 20 }, commandType: CommandType.StoredProcedure);
             int count = (int)(long)_dbConnection.ExecuteScalar(storeName, commandType: CommandType.StoredProcedure);
             return count;
+        }
 
+        public IEnumerable<Employee> SearchEmployeesByEmployeeCodeOrEmployeeName(string keyWord)
+        {
+            var storeName = "Proc_SearchEmployeeByEmployeeCodeOrEmployeeName";
+            var storeParam = new
+            {
+                KeyWordSearch = keyWord
+            };
+            var entities = _dbConnection.Query<Employee>(storeName, param: storeParam, commandType: CommandType.StoredProcedure);
+            return entities;
         }
     }
 }

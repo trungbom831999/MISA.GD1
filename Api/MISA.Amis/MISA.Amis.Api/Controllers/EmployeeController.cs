@@ -148,6 +148,27 @@ namespace MISA.Amis.Api.Controllers
         }
 
         /// <summary>
+        /// Tìm nhân viên theo mã hoặc tên
+        /// </summary>
+        /// <returns>
+        /// Các nhân viên phù hợp
+        /// </returns>
+        /// CreatedBy: NKTrung (16/04/2021)
+        [HttpGet("Search")]
+        public IActionResult SearchEmployes(string keyword)
+        {
+            var entities = _employeeService.SearchEmployeesByEmployeeCodeOrEmployeeName(keyword);
+            if (entities.Count() == 0)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return Ok(entities);
+            }
+        }
+
+        /// <summary>
         /// check trùng mã nhân viên
         /// </summary>
         /// <param name="employeeCode">Mã nhân viên cần check</param>

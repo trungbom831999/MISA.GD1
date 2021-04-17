@@ -20,5 +20,10 @@ namespace MISA.Core.Services
         {
             return _employeeRepository.GetCountEmPloyees();
         }
+
+        public IEnumerable<Employee> SearchEmployeesByEmployeeCodeOrEmployeeName(string keyWord)
+        {
+            return _employeeRepository.SearchEmployeesByEmployeeCodeOrEmployeeName(keyWord);
+        }
     }
 }
